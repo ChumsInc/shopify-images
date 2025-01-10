@@ -19,9 +19,10 @@ require_once ("autoload.inc.php");
  * Helpful hint for PHPStorm: set PHP Include Path to /includes of project intranet.chums.com
  */
 $ui = new WebUI2([
-    'requiredRoles' => [],
-    'title' => "",
-    'description' => ''
+    'requiredRoles' => [Groups::WEB_ADMIN],
+    'title' => "Shopify Image Alt Tag Editor",
+    'description' => '',
+    "bodyClassName" => 'container-fluid'
 ]);
 
 $ui->addManifestJSON('public/js/manifest.json')->render();

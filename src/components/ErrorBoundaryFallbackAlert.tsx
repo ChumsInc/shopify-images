@@ -4,11 +4,12 @@ import Alert from "react-bootstrap/Alert";
 
 export default function ErrorBoundaryFallbackAlert({error, resetErrorBoundary}: FallbackProps) {
     return (
-        <Alert color="danger" dismissible onClose={resetErrorBoundary}>
+        <Alert variant="danger" dismissible onClose={resetErrorBoundary}>
             <strong>Something went wrong!</strong>
-            <div className="text-light">
+            <div>
                 {error.message}
             </div>
+            <pre>{error.stack}</pre>
         </Alert>
     )
 }
