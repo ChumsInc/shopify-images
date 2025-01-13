@@ -4,6 +4,7 @@ import QueryProductsButton from "_components/QueryProductsButton";
 import QueryCollectionsButton from "_components/QueryCollectionsButton";
 import SocketMessages from "_src/socket/SocketMessages";
 import QueryMediaButton from "_components/QueryMediaButton";
+import SocketStatus from "_src/socket/SocketStatus";
 
 export default function QueryButtonStack() {
     return (
@@ -12,6 +13,7 @@ export default function QueryButtonStack() {
             <QueryCollectionsButton showMessages />
             <QueryMediaButton showMessages />
             <hr />
+            <SocketStatus />
             <SocketMessages messageProps={{showAction: true}}  />
         </Stack>
     )
