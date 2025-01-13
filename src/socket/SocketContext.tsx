@@ -21,12 +21,16 @@ export interface SocketContext {
     messages: ShopifyMessage[];
     connected: boolean;
     color: Variant;
+    shouldReconnect: boolean;
+    setShouldReconnect: (value: boolean) => void;
 }
 
 export const defaultSocketContext: SocketContext = {
     messages: [],
     connected: false,
     color: "secondary",
+    shouldReconnect: true,
+    setShouldReconnect: () => {},
 }
 
 const ShopifySocketContext = createContext<SocketContext>(defaultSocketContext);
@@ -47,8 +51,7 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
     const [shouldReconnect, setShouldReconnect] = useState(true);
     const socket = useRef<WebSocket | null>(null);
     const heartbeatHandle = useRef(0);
-    const reconnectHandle = useRef(0);
-    const {sendJsonMessage, lastJsonMessage, readyState, getWebSocket} = useWebSocket(buildSocketUrl(), {
+    const {lastJsonMessage} = useWebSocket(buildSocketUrl(), {
         onOpen,
         onClose,
         onMessage,
@@ -56,9 +59,26 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
         shouldReconnect: () => shouldReconnect,
     });
 
+
+    useEffect(() => {
+        setShouldReconnect(true);
+
+        return () => {
+            setShouldReconnect(false);
+            window.clearTimeout(heartbeatHandle.current);
+            socket.current?.close();
+        }
+    }, [])
+
     useEffect(() => {
         console.log(lastJsonMessage);
     }, [lastJsonMessage]);
+
+    useEffect(() => {
+        if (shouldReconnect && attempts > 2) {
+            setShouldReconnect(false);
+        }
+    }, [shouldReconnect, attempts]);
 
     function onOpen() {
         setConnected(true);
@@ -72,6 +92,7 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
 
     function onMessage(ev: MessageEvent) {
         setAttempts(0);
+        setShouldReconnect(true);
         setColor('info');
         try {
             const message = JSON.parse(ev?.data ?? {}) as ShopifyMessage;
@@ -97,32 +118,8 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
         console.error('ShopifySocketProvider.onError()', ev);
     }
 
-    // function connect() {
-    //     socket.current = new WebSocket('wss://intranet.chums.com/api/shopify/');
-    //     socket.current.addEventListener('open', onOpen);
-    //     socket.current.addEventListener('close', onClose);
-    //     socket.current.addEventListener('message', onMessage);
-    //     socket.current.addEventListener('error', onError);
-    // }
-
-    useEffect(() => {
-        setShouldReconnect(true);
-
-        return () => {
-            setShouldReconnect(false);
-            window.clearTimeout(heartbeatHandle.current);
-            socket.current?.close();
-        }
-    }, [])
-
-    useEffect(() => {
-        if (attempts > 3) {
-            setShouldReconnect(false);
-        }
-    }, [attempts]);
-
     return (
-        <ShopifySocketContext.Provider value={{connected, messages, color}}>
+        <ShopifySocketContext.Provider value={{connected, messages, color, shouldReconnect, setShouldReconnect}}>
             {children}
         </ShopifySocketContext.Provider>
     )
