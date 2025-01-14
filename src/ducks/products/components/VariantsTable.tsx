@@ -1,8 +1,8 @@
 import React from 'react';
-import {SortableTable, SortableTableField, TablePagination} from "chums-components";
+import {SortableTable, SortableTableField, TablePagination} from "sortable-tables";
 import {useAppDispatch, useAppSelector} from "_app/configureStore";
 import {selectSortedVariants, selectVariantSort} from "_ducks/products/selectors";
-import {ProductVariant, SelectedOption} from "chums-types/src/shopify";
+import {ProductVariant} from "chums-types/src/shopify";
 import {SortProps} from "chums-types";
 import {setVariantSort} from "_ducks/products/actions";
 import VariantUpdateMediaButton from "_ducks/products/components/VariantUpdateMediaButton";
@@ -40,9 +40,12 @@ export default function VariantsTable() {
             <SortableTable size="xs" currentSort={sort} onChangeSort={sortChangeHandler} fields={fields}
                            data={variants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
                            keyField="id" onSelectRow={selectVariantHandler}/>
-            <TablePagination bsSize="sm" page={page} onChangePage={setPage}
-                             rowsPerPage={rowsPerPage} onChangeRowsPerPage={rowsPerPageChangeHandler}
-                             rowsPerPageOptions={[15, 25, 50, 100]}
+            <TablePagination size="sm" page={page} onChangePage={setPage}
+                             rowsPerPage={rowsPerPage}
+                             rowsPerPageProps={{
+                                 pageValues: [15, 25, 50, 100],
+                                 onChange: rowsPerPageChangeHandler,
+                             }}
                              count={variants.length}/>
         </div>
     )

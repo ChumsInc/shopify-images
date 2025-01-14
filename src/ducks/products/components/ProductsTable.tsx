@@ -1,5 +1,5 @@
 import React from 'react';
-import {SortableTable, SortableTableField, TablePagination} from "chums-components";
+import {SortableTable, SortableTableField, TablePagination} from "sortable-tables";
 import {useAppDispatch, useAppSelector} from "_app/configureStore";
 import {selectProductSort, selectSortedProducts} from "_ducks/products/selectors";
 import {Product} from "chums-types/src/shopify";
@@ -47,10 +47,13 @@ export default function ProductsTable() {
                            data={products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
                            rowClassName={rowClassName}
                            keyField="id" onSelectRow={selectProductHandler} />
-            <TablePagination bsSize="sm" page={page} onChangePage={setPage}
+            <TablePagination size="sm" page={page} onChangePage={setPage}
                              rowsPerPage={rowsPerPage}
-                             rowsPerPageOptions={[15, 25, 50]} showFirst showLast
-                             count={products.length} />
+                             showFirst showLast
+                             count={products.length}
+                             rowsPerPageProps={{
+                                 onChange: rowsPerPageChangeHandler,
+                             }}/>
         </div>
     )
 }

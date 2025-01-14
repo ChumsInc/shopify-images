@@ -1,5 +1,5 @@
 import {Collection} from "chums-types/src/shopify";
-import {fetchJSON} from "chums-components";
+import {fetchJSON} from "chums-ui-utils";
 
 export async function fetchCollections():Promise<Collection[]> {
     try {

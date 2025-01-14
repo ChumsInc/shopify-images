@@ -1,5 +1,5 @@
 import {MediaChange, ProductMedia} from "_src/types/media";
-import {fetchJSON} from "chums-components";
+import {fetchJSON} from "chums-ui-utils";
 
 export async function getProductMedia(): Promise<ProductMedia[]> {
     try {

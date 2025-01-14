@@ -1,10 +1,11 @@
 import {createAction, createReducer, isFulfilled, isRejected} from "@reduxjs/toolkit";
 import {RootState} from "../../app/configureStore";
-import {ErrorAlert} from "chums-components";
+import {ErrorAlert} from "chums-ui-utils";
+import {StyledErrorAlert} from "_src/types/alert";
 
 export interface AlertsState {
     nextId: number;
-    list: ErrorAlert[];
+    list: StyledErrorAlert[];
 }
 
 export const initialAlertsState: AlertsState = {
@@ -12,10 +13,10 @@ export const initialAlertsState: AlertsState = {
     list: [],
 }
 
-const alertSorter = (a: ErrorAlert, b: ErrorAlert) => a.id - b.id;
+const alertSorter = (a: StyledErrorAlert, b: StyledErrorAlert) => a.id - b.id;
 
-export const dismissAlert = createAction<Partial<Pick<ErrorAlert, 'id' | 'context'>>>('alerts/dismiss');
-export const addAlert = createAction<ErrorAlert>('alerts/addAlert');
+export const dismissAlert = createAction<Partial<Pick<StyledErrorAlert, 'id' | 'context'>>>('alerts/dismiss');
+export const addAlert = createAction<StyledErrorAlert>('alerts/addAlert');
 
 export const selectAlerts = (state: RootState) => state.alerts.list;
 
@@ -47,7 +48,7 @@ const alertsReducer = createReducer(initialAlertsState, (builder) => {
         .addMatcher(isRejected, (state, action) => {
             const context = action.type.replace('/rejected', '');
             const contextAlerts = state.list.filter(alert => alert.context === context);
-            const newAlerts: ErrorAlert[] = [];
+            const newAlerts: StyledErrorAlert[] = [];
             if (contextAlerts.length) {
                 contextAlerts[0].count += 1;
             } else {

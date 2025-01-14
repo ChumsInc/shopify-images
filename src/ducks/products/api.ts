@@ -1,4 +1,4 @@
-import {fetchJSON} from "chums-components";
+import {fetchJSON} from "chums-ui-utils";
 import {Product} from "chums-types/src/shopify";
 
 export interface FetchProductOptions {
