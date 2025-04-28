@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "_app/configureStore";
-import {selectPendingChanges} from "_ducks/images/selectors";
-import {mutateProductMedia} from "_ducks/images/api";
-import {receiveMedia} from "_ducks/images/actions";
+import {useAppDispatch, useAppSelector} from "@/app/configureStore";
+import {selectPendingChanges} from "@/ducks/images/selectors";
+import {mutateProductMedia} from "@/ducks/images/api";
+import {receiveMedia} from "@/ducks/images/actions";
 import {Button} from "react-bootstrap";
 
 export default function MediaChangesButton() {

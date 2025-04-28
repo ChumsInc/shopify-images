@@ -1,5 +1,5 @@
 import {SortProps} from "chums-types";
-import {ProductMedia} from "_src/types/media";
+import {ProductMedia} from "@/src/types/media";
 import {Image} from "chums-types/src/shopify";
 
 export const mediaSorter = ({field, ascending}: SortProps<ProductMedia> | SortProps<Image>) =>

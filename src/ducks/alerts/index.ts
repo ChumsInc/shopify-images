@@ -1,7 +1,6 @@
 import {createAction, createReducer, isFulfilled, isRejected} from "@reduxjs/toolkit";
-import {RootState} from "../../app/configureStore";
-import {ErrorAlert} from "chums-ui-utils";
-import {StyledErrorAlert} from "_src/types/alert";
+import {RootState} from "@/app/configureStore";
+import {StyledErrorAlert} from "@/src/types/alert";
 
 export interface AlertsState {
     nextId: number;

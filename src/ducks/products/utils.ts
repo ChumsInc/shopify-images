@@ -1,6 +1,6 @@
 import {SortProps} from "chums-types";
 import {Product, ProductVariant, SelectedOption} from "chums-types/src/shopify";
-import {ProductMedia} from "_src/types/media";
+import {ProductMedia} from "@/src/types/media";
 
 export const productSorter = ({field, ascending}: SortProps<Product>) => (a: Product, b: Product) => {
     const sortMod = ascending ? 1 : -1;

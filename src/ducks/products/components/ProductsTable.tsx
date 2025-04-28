@@ -1,11 +1,11 @@
 import React from 'react';
-import {SortableTable, SortableTableField, TablePagination} from "sortable-tables";
-import {useAppDispatch, useAppSelector} from "_app/configureStore";
-import {selectProductSort, selectSortedProducts} from "_ducks/products/selectors";
+import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
+import {useAppDispatch, useAppSelector} from "@/app/configureStore";
+import {selectProductSort, selectSortedProducts} from "@/ducks/products/selectors";
 import {Product} from "chums-types/src/shopify";
 import {SortProps} from "chums-types";
-import {setCurrentProduct, setProductSort} from "_ducks/products/actions";
-import IncludeInactiveCheckbox from "_ducks/products/components/IncludeInactiveCheckbox";
+import {setCurrentProduct, setProductSort} from "@/ducks/products/actions";
+import IncludeInactiveCheckbox from "@/ducks/products/components/IncludeInactiveCheckbox";
 import classNames from "classnames";
 
 const fields:SortableTableField<Product>[] = [

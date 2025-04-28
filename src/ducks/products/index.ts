@@ -7,9 +7,9 @@ import {
     setProductSort,
     setShowProducts,
     setVariantSort
-} from "_ducks/products/actions";
-import {productSorter} from "_ducks/products/utils";
-import {dismissAlert} from "_ducks/alerts";
+} from "@/ducks/products/actions";
+import {productSorter} from "@/ducks/products/utils";
+import {dismissAlert} from "@/ducks/alerts";
 import {SortProps} from "chums-types";
 
 export interface ProductFilter {

@@ -1,8 +1,8 @@
 import {createAction, createAsyncThunk} from "@reduxjs/toolkit";
-import {MediaChange, ProductMedia} from "_src/types/media";
-import {getProductMedia, putProductMedia} from "_ducks/images/api";
-import {RootState} from "_app/configureStore";
-import {selectHasPendingSaves, selectImagesStatus, selectMediaStatusById} from "_ducks/images/selectors";
+import {MediaChange, ProductMedia} from "@/src/types/media";
+import {getProductMedia, putProductMedia} from "@/ducks/images/api";
+import {RootState} from "@/app/configureStore";
+import {selectHasPendingSaves, selectImagesStatus, selectMediaStatusById} from "@/ducks/images/selectors";
 import {SortProps} from "chums-types";
 import {Image} from "chums-types/src/shopify";
 

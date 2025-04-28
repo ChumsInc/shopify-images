@@ -20,10 +20,10 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "paths": {
-      "_src/*": ["./*"],
-      "_app/*": ["./app/*"],
-      "_components/*": ["./components/*"],
-      "_ducks/*": ["./ducks/*"]
+      "@/src/*": ["./*"],
+      "@/app/*": ["./app/*"],
+      "@/components/*": ["./components/*"],
+      "@/ducks/*": ["./ducks/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

@@ -1,9 +1,9 @@
-import {RootState} from "_app/configureStore";
+import {RootState} from "@/app/configureStore";
 import {createSelector} from "@reduxjs/toolkit";
-import {selectByIdHelper} from "_ducks/selectors";
-import {selectCurrentProductId} from "_ducks/products/selectors";
-import {mediaSorter} from "_ducks/images/utils";
-import {MediaChange, ProductMedia} from "_src/types/media";
+import {selectByIdHelper} from "@/ducks/selectors";
+import {selectCurrentProductId} from "@/ducks/products/selectors";
+import {mediaSorter} from "@/ducks/images/utils";
+import {MediaChange, ProductMedia} from "@/src/types/media";
 
 export const selectImagesList = (state:RootState) => state.images.list;
 export const selectImagesStatus = (state:RootState) => state.images.status;

@@ -1,6 +1,6 @@
-import {RootState} from "_app/configureStore";
+import {RootState} from "@/app/configureStore";
 import {createSelector} from "@reduxjs/toolkit";
-import {selectByIdHelper} from "_ducks/selectors";
+import {selectByIdHelper} from "@/ducks/selectors";
 
 export const selectCollectionsIDs = (state:RootState) => state.collections.ids;
 export const selectCollectionsList = (state:RootState) => state.collections.list;

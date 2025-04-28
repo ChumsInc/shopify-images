@@ -1,8 +1,8 @@
-import {RootState} from "_app/configureStore";
+import {RootState} from "@/app/configureStore";
 import {createSelector} from "@reduxjs/toolkit";
-import {selectCurrentCollection} from "_ducks/collections/selectors";
-import {productSorter, productVariantSorter} from "_ducks/products/utils";
-import {selectByIdHelper} from "_ducks/selectors";
+import {selectCurrentCollection} from "@/ducks/collections/selectors";
+import {productSorter, productVariantSorter} from "@/ducks/products/utils";
+import {selectByIdHelper} from "@/ducks/selectors";
 
 export const selectProductList = (state:RootState) => state.products.list;
 export const selectProductsStatus = (state:RootState) => state.products.status;

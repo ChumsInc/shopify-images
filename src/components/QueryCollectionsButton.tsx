@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {Button} from "react-bootstrap";
-import {useShopifySocket} from "_src/socket/SocketContext";
+import {useShopifySocket} from "@/src/socket/SocketContext";
 import {ErrorBoundary} from "react-error-boundary";
-import ErrorBoundaryFallbackAlert from "_components/ErrorBoundaryFallbackAlert";
-import SocketMessages from "_src/socket/SocketMessages";
-import {useAppDispatch} from "_app/configureStore";
-import {loadCollections} from "_ducks/collections/actions";
+import ErrorBoundaryFallbackAlert from "@/components/ErrorBoundaryFallbackAlert";
+import SocketMessages from "@/src/socket/SocketMessages";
+import {useAppDispatch} from "@/app/configureStore";
+import {loadCollections} from "@/ducks/collections/actions";
 
 export interface QueryCollectionsButtonProps {
     showMessages?: boolean;

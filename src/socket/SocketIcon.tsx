@@ -1,5 +1,5 @@
 import React, {HTMLAttributes, useEffect, useState} from 'react';
-import {SocketContext, useShopifySocket} from "_src/socket/SocketContext";
+import {SocketContext, useShopifySocket} from "@/src/socket/SocketContext";
 import classNames from "classnames";
 
 function socketClassName(socket:SocketContext) {

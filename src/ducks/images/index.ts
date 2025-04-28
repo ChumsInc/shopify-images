@@ -1,7 +1,7 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {ProductMedia} from "_src/types/media";
-import {loadMedia, receiveMedia, saveMediaChange, setMediaChange, setMediaSort} from "_ducks/images/actions";
-import {dismissAlert} from "_ducks/alerts";
+import {ProductMedia} from "@/src/types/media";
+import {loadMedia, receiveMedia, saveMediaChange, setMediaChange, setMediaSort} from "@/ducks/images/actions";
+import {dismissAlert} from "@/ducks/alerts";
 import {SortProps} from "chums-types";
 import {Image} from "chums-types/src/shopify";
 

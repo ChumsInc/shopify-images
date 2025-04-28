@@ -1,13 +1,13 @@
 import React from 'react';
-import VariantsTable from "_ducks/products/components/VariantsTable";
+import VariantsTable from "@/ducks/products/components/VariantsTable";
 import {Card, Stack} from "react-bootstrap";
-import {useAppSelector} from "_app/configureStore";
-import {selectCurrentProduct} from "_ducks/products/selectors";
-import ProductLink from "_ducks/products/components/ProductLink";
-import QueryProductsButton from "_components/QueryProductsButton";
-import QueryMediaButton from "_components/QueryMediaButton";
-import MediaChangesButton from "_ducks/products/components/MediaChangesButton";
-import {selectPendingChanges} from "_ducks/images/selectors";
+import {useAppSelector} from "@/app/configureStore";
+import {selectCurrentProduct} from "@/ducks/products/selectors";
+import ProductLink from "@/ducks/products/components/ProductLink";
+import QueryProductsButton from "@/components/QueryProductsButton";
+import QueryMediaButton from "@/components/QueryMediaButton";
+import MediaChangesButton from "@/ducks/products/components/MediaChangesButton";
+import {selectPendingChanges} from "@/ducks/images/selectors";
 
 export default function ProductInfo() {
     const product = useAppSelector(selectCurrentProduct);

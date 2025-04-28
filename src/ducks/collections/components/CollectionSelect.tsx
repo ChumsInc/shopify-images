@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useEffect, useId} from 'react';
-import {useAppDispatch, useAppSelector} from "_app/configureStore";
-import {selectCollectionsCurrentId, selectSortedCollectionsList} from "_ducks/collections/selectors";
-import {loadCollections, setCurrentCollection} from "_ducks/collections/actions";
+import {useAppDispatch, useAppSelector} from "@/app/configureStore";
+import {selectCollectionsCurrentId, selectSortedCollectionsList} from "@/ducks/collections/selectors";
+import {loadCollections, setCurrentCollection} from "@/ducks/collections/actions";
 import {FormSelect, InputGroup} from "react-bootstrap";
 
 export default function CollectionSelect() {

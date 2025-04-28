@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "_app/configureStore";
-import {selectProductMedia} from "_ducks/images/selectors";
+import {useAppDispatch, useAppSelector} from "@/app/configureStore";
+import {selectProductMedia} from "@/ducks/images/selectors";
 import {Col, Row} from "react-bootstrap";
-import {loadMedia} from "_ducks/images/actions";
-import ProductImageCard from "_ducks/images/components/ProductImageCard";
-import {selectShowProducts} from "_ducks/products/selectors";
-import BestPractices from "_components/BestPractices";
+import {loadMedia} from "@/ducks/images/actions";
+import ProductImageCard from "@/ducks/images/components/ProductImageCard";
+import {selectShowProducts} from "@/ducks/products/selectors";
+import BestPractices from "@/components/BestPractices";
 
 export default function ProductImageList() {
     const dispatch = useAppDispatch();

@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useId} from 'react';
-import {useAppDispatch, useAppSelector} from "_app/configureStore";
+import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {FormCheck} from "react-bootstrap";
-import {selectShowProducts} from "_ducks/products/selectors";
-import {setShowProducts} from "_ducks/products/actions";
+import {selectShowProducts} from "@/ducks/products/selectors";
+import {setShowProducts} from "@/ducks/products/actions";
 
 export default function ShowProductsCheckbox() {
     const dispatch = useAppDispatch();

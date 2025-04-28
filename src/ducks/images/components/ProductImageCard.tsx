@@ -1,18 +1,18 @@
 import React, {useEffect, useRef} from 'react';
-import ProductImageEditButton from "_ducks/images/components/ProductImageEditButton";
-import ProductFigure from "_ducks/images/components/ProductFigure";
-import ProductImageEdit from "_ducks/images/components/ProductImageEdit";
-import {ProductMedia} from "_src/types/media";
+import ProductImageEditButton from "@/ducks/images/components/ProductImageEditButton";
+import ProductFigure from "@/ducks/images/components/ProductFigure";
+import ProductImageEdit from "@/ducks/images/components/ProductImageEdit";
+import {ProductMedia} from "@/src/types/media";
 import {Card, Stack} from "react-bootstrap";
-import PushMediaButton from "_ducks/images/components/PushMediaButton";
-import {useAppSelector} from "_app/configureStore";
-import {selectSortedVariants} from "_ducks/products/selectors";
+import PushMediaButton from "@/ducks/images/components/PushMediaButton";
+import {useAppSelector} from "@/app/configureStore";
+import {selectSortedVariants} from "@/ducks/products/selectors";
 import {ProductVariant} from "chums-types/src/shopify";
-import {reImpulse2, reImpulse7} from "_ducks/products/utils";
-import PrimaryMediaBadge from "_ducks/images/components/PrimaryMediaBadge";
-import SuccessfulMediaBadge from "_ducks/images/components/SuccessfulMediaBadge";
-import DangerMediaBadge from "_ducks/images/components/DangerMediaBadge";
-import InfoMediaBadge from "_ducks/images/components/InfoMediaBadge";
+import {reImpulse2, reImpulse7} from "@/ducks/products/utils";
+import PrimaryMediaBadge from "@/ducks/images/components/PrimaryMediaBadge";
+import SuccessfulMediaBadge from "@/ducks/images/components/SuccessfulMediaBadge";
+import DangerMediaBadge from "@/ducks/images/components/DangerMediaBadge";
+import InfoMediaBadge from "@/ducks/images/components/InfoMediaBadge";
 
 function hasPrimaryImage(variants: ProductVariant[], id: string): boolean {
     return variants.some(variant => variant.media.some(m => m.id === id));

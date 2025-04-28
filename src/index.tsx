@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import App from './app/App';
 import store from './app/configureStore'
 import {createRoot} from "react-dom/client";
-import {ShopifySocketProvider} from "_src/socket/SocketContext";
+import {ShopifySocketProvider} from "@/src/socket/SocketContext";
 import {BrowserRouter} from "react-router";
 
 const container = document.getElementById('app');

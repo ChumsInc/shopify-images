@@ -1,5 +1,5 @@
 import React from 'react';
-import {ShopifyMessage} from "_src/socket/SocketContext";
+import {ShopifyMessage} from "@/src/socket/SocketContext";
 import {Badge, BadgeProps} from "react-bootstrap";
 
 export interface SocketMessageProps extends BadgeProps {

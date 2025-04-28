@@ -1,5 +1,5 @@
 import React from 'react';
-import SocketIcon from "_src/socket/SocketIcon";
+import SocketIcon from "@/src/socket/SocketIcon";
 
 export default function SocketStatus() {
     return (

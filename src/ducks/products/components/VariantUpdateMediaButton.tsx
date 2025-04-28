@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {ProductVariant} from "chums-types/src/shopify";
-import {useAppDispatch, useAppSelector} from "_app/configureStore";
-import {selectProductMedia} from "_ducks/images/selectors";
-import {ProductMedia} from "_src/types/media";
+import {useAppDispatch, useAppSelector} from "@/app/configureStore";
+import {selectProductMedia} from "@/ducks/images/selectors";
+import {ProductMedia} from "@/src/types/media";
 import {Button} from "react-bootstrap";
-import {setMediaChange} from "_ducks/images/actions";
-import {formatAltText, variantImages} from "_ducks/products/utils";
-import {selectCurrentProduct} from "_ducks/products/selectors";
+import {setMediaChange} from "@/ducks/images/actions";
+import {formatAltText, variantImages} from "@/ducks/products/utils";
+import {selectCurrentProduct} from "@/ducks/products/selectors";
 
 
 export interface VariantUpdateMediaButtonProps {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
-import CollectionSelect from "_ducks/collections/components/CollectionSelect";
-import ProductSelect from "_ducks/products/components/ProductSelect";
-import ShowProductsCheckbox from "_ducks/products/components/ShowProductsCheckbox";
+import CollectionSelect from "@/ducks/collections/components/CollectionSelect";
+import ProductSelect from "@/ducks/products/components/ProductSelect";
+import ShowProductsCheckbox from "@/ducks/products/components/ShowProductsCheckbox";
 
 export default function ImagesFilterBar() {
     return (

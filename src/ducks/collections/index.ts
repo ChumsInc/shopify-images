@@ -1,8 +1,8 @@
 import {Collection} from 'chums-types/src/shopify'
 import {createReducer} from "@reduxjs/toolkit";
-import {loadCollections, setCurrentCollection} from "_ducks/collections/actions";
-import {collectionsSorter} from "_ducks/collections/utils";
-import {dismissAlert} from "_ducks/alerts";
+import {loadCollections, setCurrentCollection} from "@/ducks/collections/actions";
+import {collectionsSorter} from "@/ducks/collections/utils";
+import {dismissAlert} from "@/ducks/alerts";
 
 export interface CollectionsState {
     ids: string[];

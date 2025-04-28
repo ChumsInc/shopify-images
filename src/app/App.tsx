@@ -3,14 +3,14 @@ import React from 'react';
 import AlertList from "../ducks/alerts/AlertList";
 import {useAppSelector} from "./configureStore";
 import {Col, Row} from "react-bootstrap";
-import ImagesFilterBar from "_components/ImagesFilterBar";
-import ProductsTable from "_ducks/products/components/ProductsTable";
-import ProductImageList from "_ducks/images/components/ProductImageList";
+import ImagesFilterBar from "@/components/ImagesFilterBar";
+import ProductsTable from "@/ducks/products/components/ProductsTable";
+import ProductImageList from "@/ducks/images/components/ProductImageList";
 import {ErrorBoundary} from "react-error-boundary";
-import ErrorBoundaryFallbackAlert from "_components/ErrorBoundaryFallbackAlert";
-import QueryButtonStack from "_components/QueryButtonStack";
-import ProductInfo from "_ducks/products/components/ProductInfo";
-import {selectShowProducts} from "_ducks/products/selectors";
+import ErrorBoundaryFallbackAlert from "@/components/ErrorBoundaryFallbackAlert";
+import QueryButtonStack from "@/components/QueryButtonStack";
+import ProductInfo from "@/ducks/products/components/ProductInfo";
+import {selectShowProducts} from "@/ducks/products/selectors";
 
 function App() {
     const showProducts = useAppSelector(selectShowProducts);

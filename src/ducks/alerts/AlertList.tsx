@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {dismissAlert, selectAlerts} from "./index";
 import {useAppDispatch} from "../../app/configureStore";
 import ContextAlert from "../../components/ContextAlert";
-import {StyledErrorAlert} from "_src/types/alert";
+import {StyledErrorAlert} from "@/src/types/alert";
 
 
 export type ContextFilterFunction = (alerts: StyledErrorAlert) => boolean;

@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useEffect, useId} from 'react';
 import {FormSelect, InputGroup} from "react-bootstrap";
-import {useAppDispatch, useAppSelector} from "_app/configureStore";
-import {selectCurrentProduct, selectSortedProducts} from "_ducks/products/selectors";
-import {loadProducts, setCurrentProduct} from "_ducks/products/actions";
+import {useAppDispatch, useAppSelector} from "@/app/configureStore";
+import {selectCurrentProduct, selectSortedProducts} from "@/ducks/products/selectors";
+import {loadProducts, setCurrentProduct} from "@/ducks/products/actions";
 import {useSearchParams} from "react-router";
 
 export default function ProductSelect() {
