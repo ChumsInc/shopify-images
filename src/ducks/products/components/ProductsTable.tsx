@@ -2,11 +2,11 @@ import React from 'react';
 import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {
-    selectCurrentProduct,
-    selectProductSort,
+    selectCurrentProduct, selectPage,
+    selectProductSort, selectRowsPerPage,
     selectSortedProducts,
-    setCurrentProductId,
-    setProductSort
+    setCurrentProductId, setPage,
+    setProductSort, setRowsPerPage
 } from "@/ducks/products";
 import {Product} from "chums-types/src/shopify";
 import {SortProps} from "chums-types";
@@ -27,12 +27,11 @@ export default function ProductsTable() {
     const products = useAppSelector(selectSortedProducts);
     const current = useAppSelector(selectCurrentProduct);
     const sort = useAppSelector(selectProductSort);
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(25);
+    const page = useAppSelector(selectPage);
+    const rowsPerPage = useAppSelector(selectRowsPerPage);
     const navigate = useNavigate();
 
     const sortChangeHandler = (sort: SortProps<Product>) => {
-        setPage(0);
         dispatch(setProductSort(sort));
     }
 
@@ -47,9 +46,11 @@ export default function ProductsTable() {
         }));
     }
 
+    const pageChangeHandler = (page: number) => {
+        dispatch(setPage(page));
+    }
     const rowsPerPageChangeHandler = (rowsPerPage: number) => {
-        setPage(0);
-        setRowsPerPage(rowsPerPage);
+        dispatch(setRowsPerPage(rowsPerPage));
     }
     const rowClassName = (row: Product) => {
         return classNames({
@@ -65,7 +66,7 @@ export default function ProductsTable() {
                            selected={current?.id}
                            rowClassName={rowClassName}
                            keyField="id" onSelectRow={selectProductHandler}/>
-            <TablePagination size="sm" page={page} onChangePage={setPage}
+            <TablePagination size="sm" page={page} onChangePage={pageChangeHandler}
                              rowsPerPage={rowsPerPage}
                              showFirst showLast
                              count={products.length}

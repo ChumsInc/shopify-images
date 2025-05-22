@@ -27,6 +27,8 @@ export interface ProductsState {
     productSort: SortProps<Product>;
     variantSort: SortProps<ProductVariant>;
     filters: ProductFilter;
+    page: number;
+    rowsPerPage: number;
 }
 
 export const initialState: ProductsState = {
@@ -40,7 +42,9 @@ export const initialState: ProductsState = {
         includeInactive: false,
         showProducts: false,
         variantFilter: '',
-    }
+    },
+    page: 0,
+    rowsPerPage: 25,
 }
 
 const index = createSlice({
@@ -71,6 +75,7 @@ const index = createSlice({
         },
         setProductSort: (state, action: PayloadAction<SortProps<Product>>) => {
             state.productSort = action.payload;
+            state.page = 0;
         },
         setIncludeInactive: (state, action: PayloadAction<boolean>) => {
             state.filters.includeInactive = action.payload;
@@ -80,7 +85,14 @@ const index = createSlice({
         },
         setVariantFilter: (state, action: PayloadAction<string>) => {
             state.filters.variantFilter = action.payload;
-        }
+        },
+        setPage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload;
+        },
+        setRowsPerPage: (state, action: PayloadAction<number>) => {
+            state.rowsPerPage = action.payload;
+            state.page = 0;
+        },
     },
     extraReducers: builder => {
         builder
@@ -89,6 +101,7 @@ const index = createSlice({
             })
             .addCase(loadProducts.fulfilled, (state, action) => {
                 state.status = 'idle';
+                const ct = selectors.selectIds(state).length
                 productAdapter.setAll(state, action.payload);
                 if (state.currentHandle && !state.currentId) {
                     const [current] = action.payload.filter(p => p.handle === state.currentHandle);
@@ -97,6 +110,9 @@ const index = createSlice({
                     } else {
                         state.currentHandle = ''
                     }
+                }
+                if (selectors.selectIds(state).length < ct) {
+                    state.page = 0;
                 }
             })
             .addCase(loadProducts.rejected, (state) => {
@@ -123,6 +139,8 @@ const index = createSlice({
         selectIncludeInactive: (state) => state.filters.includeInactive,
         selectShowProducts: (state) => state.filters.showProducts,
         selectVariantFilter: (state) => state.filters.variantFilter,
+        selectPage: (state) => state.page,
+        selectRowsPerPage: (state) => state.rowsPerPage,
     }
 });
 
@@ -134,7 +152,9 @@ export const {
     setVariantSort,
     setProductSort,
     setIncludeInactive,
-    setShowProducts
+    setShowProducts,
+    setPage,
+    setRowsPerPage
 } = index.actions;
 
 export const {
@@ -147,6 +167,8 @@ export const {
     selectProductList,
     selectIncludeInactive,
     selectVariantFilter,
+    selectPage,
+    selectRowsPerPage
 } = index.selectors;
 
 export const selectCurrentProduct = createSelector(

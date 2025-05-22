@@ -1,13 +1,6 @@
 import React from 'react';
 import {ShopifyMessage} from "@/src/socket/SocketContext";
 import {Badge, BadgeProps} from "react-bootstrap";
-import styled from "@emotion/styled";
-
-const ActionSpan = styled.span`
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-`
 
 export interface SocketMessageProps extends BadgeProps {
     message?: ShopifyMessage;
@@ -20,9 +13,9 @@ export default function SocketMessage({message, showAction, ...rest}: SocketMess
     const {action, result, timestamp} = message.data;
 
     return (
-        <Badge bg="secondary" title={timestamp} {...rest}>
+        <Badge bg="secondary" title={timestamp} {...rest} style={{maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis'}}>
             {result}
-            {showAction && <ActionSpan title={action}>:{action}</ActionSpan>}
+            {showAction && <span title={action}>:{action}</span>}
         </Badge>
     )
 }
