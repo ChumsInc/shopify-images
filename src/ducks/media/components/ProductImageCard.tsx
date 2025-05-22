@@ -1,22 +1,21 @@
 import React, {useEffect, useRef} from 'react';
-import ProductImageEditButton from "@/ducks/images/components/ProductImageEditButton";
-import ProductFigure from "@/ducks/images/components/ProductFigure";
-import ProductImageEdit from "@/ducks/images/components/ProductImageEdit";
+import ProductImageEditButton from "@/ducks/media/components/ProductImageEditButton";
+import ProductFigure from "@/ducks/media/components/ProductFigure";
+import ProductImageEdit from "@/ducks/media/components/ProductImageEdit";
 import {ProductMedia} from "@/src/types/media";
 import {Card, Stack} from "react-bootstrap";
-import PushMediaButton from "@/ducks/images/components/PushMediaButton";
+import PushMediaButton from "@/ducks/media/components/PushMediaButton";
 import {useAppSelector} from "@/app/configureStore";
-import {selectSortedVariants} from "@/ducks/products/selectors";
+import {selectSortedVariants} from "@/ducks/products";
 import {ProductVariant} from "chums-types/src/shopify";
 import {reImpulse2, reImpulse7} from "@/ducks/products/utils";
-import PrimaryMediaBadge from "@/ducks/images/components/PrimaryMediaBadge";
-import SuccessfulMediaBadge from "@/ducks/images/components/SuccessfulMediaBadge";
-import DangerMediaBadge from "@/ducks/images/components/DangerMediaBadge";
-import InfoMediaBadge from "@/ducks/images/components/InfoMediaBadge";
+import PrimaryMediaBadge from "@/ducks/media/components/PrimaryMediaBadge";
+import SuccessfulMediaBadge from "@/ducks/media/components/SuccessfulMediaBadge";
+import DangerMediaBadge from "@/ducks/media/components/DangerMediaBadge";
+import InfoMediaBadge from "@/ducks/media/components/InfoMediaBadge";
+import {hasPrimaryImage, isImpulse2, isMissingAltText, isValidAll, isValidImpulse7} from "@/ducks/media/utils";
+import UnlinkMediaButton from "@/components/UnlinkMediaButton";
 
-function hasPrimaryImage(variants: ProductVariant[], id: string): boolean {
-    return variants.some(variant => variant.media.some(m => m.id === id));
-}
 
 export interface ProductImageContainerProps {
     media: ProductMedia;
@@ -44,13 +43,13 @@ export default function ProductImageCard({media}: ProductImageContainerProps) {
                     {isPrimaryImage && (
                         <PrimaryMediaBadge/>
                     )}
-                    {reImpulse7.test(media.alt) && (
+                    {isValidImpulse7(media.alt) && (
                         <SuccessfulMediaBadge/>
                     )}
-                    {reImpulse2.test(media.alt) && !reImpulse7.test(media.alt) && (
+                    {isImpulse2(media.alt) && (
                         <DangerMediaBadge>ALL</DangerMediaBadge>
                     )}
-                    {!reImpulse2.test(media.alt) && !reImpulse7.test(media.alt) && (
+                    {isValidAll(media.alt) && (
                         <InfoMediaBadge>ALL</InfoMediaBadge>
                     )}
                     <ProductImageEditButton checked={edit} onChange={(ev) => setEdit(ev.target.checked)}/>
@@ -61,7 +60,7 @@ export default function ProductImageCard({media}: ProductImageContainerProps) {
                 <ProductFigure media={media} width={240}/>
             </Card.Body>
             <Card.Body className="border-top">
-                {!media.alt && <DangerMediaBadge>Missing Alt Text</DangerMediaBadge>}
+                {isMissingAltText(media.alt) && <DangerMediaBadge>Missing Alt Text</DangerMediaBadge>}
                 <div className="text-secondary font-monospace mb-1"
                      onClick={altTextClickHandler}
                      style={{fontSize: 'small', cursor: 'pointer'}}>
@@ -69,6 +68,9 @@ export default function ProductImageCard({media}: ProductImageContainerProps) {
                 </div>
                 <ProductImageEdit media={media} show={edit} onClose={() => setEdit(false)} ref={editRef}/>
             </Card.Body>
+            <Card.Footer className="text-muted">
+                <UnlinkMediaButton media={media}/>
+            </Card.Footer>
         </Card>
     )
 }

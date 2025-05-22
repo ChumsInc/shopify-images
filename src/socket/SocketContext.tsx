@@ -36,9 +36,10 @@ export const defaultSocketContext: SocketContext = {
 const ShopifySocketContext = createContext<SocketContext>(defaultSocketContext);
 
 
-const buildSocketUrl = ():string => {
+const buildSocketUrl = ():string|null => {
     if (window.location.host === 'localhost' || window.location.host.startsWith('localhost:')) {
-        return 'ws://localhost:8086';
+        return null;
+        // return 'ws://localhost:8086';
     }
     return 'wss://intranet.chums.com/api/shopify/';
 }
@@ -51,7 +52,15 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
     const [shouldReconnect, setShouldReconnect] = useState(true);
     const socket = useRef<WebSocket | null>(null);
     const heartbeatHandle = useRef(0);
-    const {lastJsonMessage} = useWebSocket(buildSocketUrl(), {
+    const url = buildSocketUrl();
+    if (!url) {
+        return (
+            <div>
+                {children}
+            </div>
+        );
+    }
+    const {lastJsonMessage} = useWebSocket(url, {
         onOpen,
         onClose,
         onMessage,

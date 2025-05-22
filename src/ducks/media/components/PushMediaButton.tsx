@@ -1,9 +1,9 @@
 import React from 'react';
 import {ProductMedia} from "@/src/types/media";
 import {Button} from "react-bootstrap";
-import {mutateProductMedia} from "@/ducks/images/api";
+import {mutateProductMedia} from "@/ducks/media/api";
 import {useAppDispatch} from "@/app/configureStore";
-import {receiveMedia} from "@/ducks/images/actions";
+import {receiveMedia} from "@/ducks/media/actions";
 
 export interface PushMediaButtonProps {
     media:ProductMedia;

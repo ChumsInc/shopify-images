@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {ProductVariant} from "chums-types/src/shopify";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
-import {selectProductMedia} from "@/ducks/images/selectors";
+import {selectProductMedia, setMediaChange} from "@/ducks/media";
 import {ProductMedia} from "@/src/types/media";
 import {Button} from "react-bootstrap";
-import {setMediaChange} from "@/ducks/images/actions";
 import {formatAltText, variantImages} from "@/ducks/products/utils";
-import {selectCurrentProduct} from "@/ducks/products/selectors";
+import {selectCurrentProduct} from "@/ducks/products";
 
 
 export interface VariantUpdateMediaButtonProps {
@@ -26,9 +25,12 @@ export default function VariantUpdateMediaButton({variant}: VariantUpdateMediaBu
 
     const clickHandler = () => {
         media.forEach(m => {
-            const alt = formatAltText(m.alt, variant, product.title);
+            const alt = formatAltText(m.alt, variant, product!.title);
             dispatch(setMediaChange({id: m.id, alt: alt}));
         })
+    }
+    if (!product) {
+        return null;
     }
     return (
         <Button type="button" onClick={clickHandler} disabled={media.length === 0} size="sm" style={{fontSize: '10px'}}>

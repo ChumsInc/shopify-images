@@ -5,3 +5,9 @@ export interface ProductMedia extends Omit<Media, 'mediaContentType'> {
 }
 
 export type MediaChange = Pick<Media, 'id'|'alt'>;
+
+export interface FilesUserError {
+    code: string;
+    field: string[];
+    message: string;
+}

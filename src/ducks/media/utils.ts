@@ -1,6 +1,7 @@
 import {SortProps} from "chums-types";
 import {ProductMedia} from "@/src/types/media";
-import {Image} from "chums-types/src/shopify";
+import {Image, ProductVariant} from "chums-types/src/shopify";
+import {reImpulse2, reImpulse7} from "@/ducks/products/utils";
 
 export const mediaSorter = ({field, ascending}: SortProps<ProductMedia> | SortProps<Image>) =>
     (a: ProductMedia, b: ProductMedia) => {
@@ -35,25 +36,46 @@ export const mediaSorter = ({field, ascending}: SortProps<ProductMedia> | SortPr
     }
 
 
-    export const parseImageUrl = (url: string|null|undefined):string|null => {
-        if (!url) {
-            return null;
-        }
-        const [src] = url.split('?');
-        return src;
+export const parseImageUrl = (url: string | null | undefined): string | null => {
+    if (!url) {
+        return null;
     }
+    const [src] = url.split('?');
+    return src;
+}
 
-    export const parseImageURLParams = (url: string|null|undefined, options?:Record<string, string>):URLSearchParams => {
-        if (!url) {
-            return new URLSearchParams();
-        }
-        const [, query] = url.split('?');
-        const params = new URLSearchParams(query);
-        if (options) {
-            Object.keys(options)
-                .forEach(key => {
+export const parseImageURLParams = (url: string | null | undefined, options?: Record<string, string>): URLSearchParams => {
+    if (!url) {
+        return new URLSearchParams();
+    }
+    const [, query] = url.split('?');
+    const params = new URLSearchParams(query);
+    if (options) {
+        Object.keys(options)
+            .forEach(key => {
                 params.set(key, options[key]);
             })
-        }
-        return params;
     }
+    return params;
+}
+
+export function hasPrimaryImage(variants: ProductVariant[], id: string): boolean {
+    return variants.some(variant => variant.media.some(m => m.id === id));
+}
+
+export function isValidImpulse7(alt: string): boolean {
+    return reImpulse7.test(alt)
+}
+
+export function isImpulse2(alt: string): boolean {
+    return reImpulse2.test(alt) && !reImpulse7.test(alt)
+}
+
+export function isValidAll(alt: string): boolean {
+    return !reImpulse2.test(alt) && !reImpulse7.test(alt)
+}
+
+export function isMissingAltText(alt: string): boolean {
+    return !alt || alt.trim().length === 0;
+}
+

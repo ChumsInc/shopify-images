@@ -2,15 +2,15 @@ import {configureStore} from '@reduxjs/toolkit'
 import {combineReducers} from "redux";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import alertsReducer from "@/ducks/alerts";
-import collectionsReducer from "../ducks/collections";
-import productsReducer from "@/ducks/products";
-import imagesReducer from "@/ducks/images";
+import {default as collectionsSlice} from "../ducks/collections";
+import {default as productsSlice} from "@/ducks/products";
+import {default as imagesSlice} from "@/ducks/media";
 
 const rootReducer = combineReducers({
     alerts: alertsReducer,
-    collections: collectionsReducer,
-    images: imagesReducer,
-    products: productsReducer,
+    [collectionsSlice.reducerPath]: collectionsSlice.reducer,
+    [imagesSlice.reducerPath]: imagesSlice.reducer,
+    [productsSlice.reducerPath]: productsSlice.reducer,
 });
 
 const store = configureStore({

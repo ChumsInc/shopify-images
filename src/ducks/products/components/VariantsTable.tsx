@@ -1,26 +1,41 @@
-import React from 'react';
+import React, {useEffect, useId, useState} from 'react';
 import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
-import {selectSortedVariants, selectVariantSort} from "@/ducks/products/selectors";
+import {selectSortedVariants, selectVariantSort, setVariantSort} from "@/ducks/products";
 import {ProductVariant} from "chums-types/src/shopify";
 import {SortProps} from "chums-types";
-import {setVariantSort} from "@/ducks/products/actions";
 import VariantUpdateMediaButton from "@/ducks/products/components/VariantUpdateMediaButton";
+import {Col, Row, ToggleButton} from "react-bootstrap";
 
 
-const fields: SortableTableField<ProductVariant>[] = [
+const defaultFields: SortableTableField<ProductVariant>[] = [
     // {field: 'id', title: 'ID', sortable: true},
     {field: 'sku', title: 'SKU', sortable: true},
     {field: 'title', title: 'Title', sortable: true},
     {field: 'price', title: 'Price', sortable: true},
+];
+
+const optionalFields: SortableTableField<ProductVariant>[] = [
     {field: 'selectedOptions', title: 'Options', render: row => <VariantUpdateMediaButton variant={row}/>},
 ]
+
 export default function VariantsTable() {
     const dispatch = useAppDispatch();
     const variants = useAppSelector(selectSortedVariants);
     const sort = useAppSelector(selectVariantSort);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(25);
+    const [fields, setFields] = useState<SortableTableField<ProductVariant>[]>(defaultFields);
+    const [show, setShow] = useState(false);
+    const showOptionsId = useId();
+
+    useEffect(() => {
+        setPage(0);
+    }, [variants.length]);
+
+    useEffect(() => {
+        setFields(show ? [...defaultFields, ...optionalFields] : defaultFields);
+    }, [show]);
 
     const sortChangeHandler = (sort: SortProps<ProductVariant>) => {
         setPage(0);
@@ -37,13 +52,23 @@ export default function VariantsTable() {
     }
     return (
         <div>
+            <Row className="g-0">
+                <Col/>
+                <Col xs="auto">
+                    <ToggleButton id={showOptionsId} type="checkbox" checked={show}
+                                  variant="outline-secondary" size="sm"
+                                  value="show-options" onChange={() => setShow(!show)}>
+                        Show Options
+                    </ToggleButton>
+                </Col>
+            </Row>
             <SortableTable size="xs" currentSort={sort} onChangeSort={sortChangeHandler} fields={fields}
                            data={variants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
                            keyField="id" onSelectRow={selectVariantHandler}/>
             <TablePagination size="sm" page={page} onChangePage={setPage}
                              rowsPerPage={rowsPerPage}
                              rowsPerPageProps={{
-                                 pageValues: [15, 25, 50, 100],
+                                 pageValues: [10, 15, 25, 50, 100],
                                  onChange: rowsPerPageChangeHandler,
                              }}
                              count={variants.length}/>

@@ -1,8 +1,8 @@
 import React, {ChangeEvent, FormEvent, KeyboardEvent, useCallback, useEffect, useId, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
-import {saveMediaChange} from "@/ducks/images/actions";
+import {saveMediaChange} from "@/ducks/media/actions";
 import {Button, Collapse, FormControl, InputGroup} from "react-bootstrap";
-import {selectMediaStatusById} from "@/ducks/images/selectors";
+import {selectMediaStatusById} from "@/ducks/media";
 import {ProductMedia} from "@/src/types/media";
 
 export interface ProductImageEditProps {

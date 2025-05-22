@@ -1,11 +1,10 @@
-import {createAction, createAsyncThunk} from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 import {fetchCollections} from "./api";
 import {Collection} from "chums-types/src/shopify";
 import {RootState} from "@/app/configureStore";
-import {selectCollectionsStatus} from "@/ducks/collections/selectors";
+import {selectCollectionsStatus} from "@/ducks/collections/index";
 
-export const setCurrentCollection = createAction<string>('collections/current');
-export const loadCollections = createAsyncThunk<Collection[], void, {state:RootState}>(
+export const loadCollections = createAsyncThunk<Collection[], void, { state: RootState }>(
     'collections/load',
     async () => {
         return await fetchCollections();

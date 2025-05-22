@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Figure, FigureProps} from "react-bootstrap";
 import {Media} from "chums-types/src/shopify";
-import {parseImageUrl, parseImageURLParams} from "@/ducks/images/utils";
+import {parseImageUrl, parseImageURLParams} from "@/ducks/media/utils";
 import Decimal from "decimal.js";
 import {ProductMedia} from "@/src/types/media";
 

@@ -1,13 +1,12 @@
-import {createAction, createAsyncThunk} from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 import {FetchProductOptions, fetchProducts} from "@/ducks/products/api";
-import {Product, ProductVariant} from "chums-types/src/shopify";
+import {Product} from "chums-types/src/shopify";
 import {RootState} from "@/app/configureStore";
-import {selectProductsStatus} from "@/ducks/products/selectors";
-import {SortProps} from "chums-types";
+import {selectProductsStatus} from "@/ducks/products/index";
 
-export const loadProducts = createAsyncThunk<Product[], FetchProductOptions|undefined, {state:RootState}>(
+export const loadProducts = createAsyncThunk<Product[], FetchProductOptions | undefined, { state: RootState }>(
     'products/load',
-    async (arg?:FetchProductOptions) => {
+    async (arg?: FetchProductOptions) => {
         return await fetchProducts(arg)
     },
     {
@@ -18,9 +17,3 @@ export const loadProducts = createAsyncThunk<Product[], FetchProductOptions|unde
     }
 )
 
-export const setCurrentProduct = createAction<string>('products/setCurrentProduct');
-export const setCurrentVariant = createAction<string>('products/setCurrentVariant');
-export const setProductSort = createAction<SortProps<Product>>('products/setProductSort');
-export const setVariantSort = createAction<SortProps<ProductVariant>>('products/setVariantSort');
-export const setIncludeInactive = createAction<boolean>('products/filter/setIncludeInactive');
-export const setShowProducts = createAction<boolean>('products/filter/setShowProducts');
