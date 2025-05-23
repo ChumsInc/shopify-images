@@ -1,12 +1,13 @@
-import {Product, ProductVariant} from 'chums-types/src/shopify'
+import {ProductVariant} from 'chums-types/src/shopify'
 import {createEntityAdapter, createSelector, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {loadProducts} from "@/ducks/products/actions";
 import {productSorter, productVariantSorter} from "@/ducks/products/utils";
 import {dismissAlert} from "@/ducks/alerts";
 import {SortProps} from "chums-types";
 import {selectCurrentCollection, setCurrentCollectionId} from "@/ducks/collections";
+import {ProductWithMedia} from "@/src/types/products";
 
-const productAdapter = createEntityAdapter<Product, string>({
+const productAdapter = createEntityAdapter<ProductWithMedia, string>({
     selectId: (product) => product.id,
     sortComparer: productSorter({field: "id", ascending: true}),
 });
@@ -24,7 +25,7 @@ export interface ProductsState {
     currentId: string;
     currentHandle: string;
     currentVariantId: string;
-    productSort: SortProps<Product>;
+    productSort: SortProps<ProductWithMedia>;
     variantSort: SortProps<ProductVariant>;
     filters: ProductFilter;
     page: number;
@@ -73,7 +74,7 @@ const index = createSlice({
         setVariantSort: (state, action: PayloadAction<SortProps<ProductVariant>>) => {
             state.variantSort = action.payload;
         },
-        setProductSort: (state, action: PayloadAction<SortProps<Product>>) => {
+        setProductSort: (state, action: PayloadAction<SortProps<ProductWithMedia>>) => {
             state.productSort = action.payload;
             state.page = 0;
         },

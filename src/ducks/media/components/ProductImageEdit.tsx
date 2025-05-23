@@ -60,7 +60,7 @@ export default React.forwardRef<HTMLTextAreaElement, ProductImageEditProps>(func
                 </InputGroup>
                 <Button type="submit" variant="secondary" size="sm" disabled={status !== 'idle'}
                         className="me-1">Save</Button>
-                <Button type="submit" variant="outline-secondary" size="sm" disabled={status !== 'idle'}
+                <Button type="button" variant="outline-secondary" size="sm" disabled={status !== 'idle'}
                         onClick={onClose}>Cancel</Button>
             </form>
         </Collapse>

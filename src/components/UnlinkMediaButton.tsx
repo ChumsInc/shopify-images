@@ -1,17 +1,17 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {selectImagesStatus} from "@/ducks/media";
-import {Button, Modal, ProgressBar, Stack} from "react-bootstrap";
+import {Button, ButtonProps, Modal, ProgressBar, Stack} from "react-bootstrap";
 import {selectCurrentProduct} from "@/ducks/products";
 import ProductFigure from "@/ducks/media/components/ProductFigure";
 import {unlinkProductMedia} from "@/ducks/media/actions";
 import {ProductMedia} from "@/src/types/media";
 
-export interface UnlinkMediaButtonProps {
+export interface UnlinkMediaButtonProps extends Omit<ButtonProps, 'onClick'|'variant'> {
     media: ProductMedia;
 }
 
-export default function UnlinkMediaButton({media}: UnlinkMediaButtonProps) {
+export default function UnlinkMediaButton({media, disabled, ...props}: UnlinkMediaButtonProps) {
     const dispatch = useAppDispatch();
     const status = useAppSelector(selectImagesStatus);
     const product = useAppSelector(selectCurrentProduct);
@@ -27,8 +27,8 @@ export default function UnlinkMediaButton({media}: UnlinkMediaButtonProps) {
     }
     return (
         <>
-            <Button type="button" variant="outline-danger" size="sm" onClick={() => setShow(true)} disabled={status !== 'idle'}>
-                Unlink Image
+            <Button {...props} type="button" variant="danger" size="sm" onClick={() => setShow(true)} disabled={disabled || status !== 'idle'}>
+                <span className="bi-x-lg" />
             </Button>
             {show && (
                 <Modal show={show} onHide={() => setShow(false)} size="lg">

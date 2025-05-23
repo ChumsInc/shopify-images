@@ -12,7 +12,9 @@ export default function ProductImagesContainer() {
                 <ProductInfo/>
             </Col>
             <Col>
-                <ProductImageStatus />
+                <div className="sticky-top bg-body p-0 pb-3">
+                    <ProductImageStatus />
+                </div>
                 <ProductImageList/>
             </Col>
         </Row>

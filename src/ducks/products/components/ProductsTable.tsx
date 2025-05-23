@@ -2,24 +2,31 @@ import React from 'react';
 import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {
-    selectCurrentProduct, selectPage,
-    selectProductSort, selectRowsPerPage,
+    selectCurrentProduct,
+    selectPage,
+    selectProductSort,
+    selectRowsPerPage,
     selectSortedProducts,
-    setCurrentProductId, setPage,
-    setProductSort, setRowsPerPage
+    setCurrentProductId,
+    setPage,
+    setProductSort,
+    setRowsPerPage
 } from "@/ducks/products";
-import {Product} from "chums-types/src/shopify";
 import {SortProps} from "chums-types";
 import IncludeInactiveCheckbox from "@/ducks/products/components/IncludeInactiveCheckbox";
 import classNames from "classnames";
 import {generatePath, useNavigate} from "react-router";
 import {selectCurrentCollection} from "@/ducks/collections";
+import {ProductWithMedia} from "@/src/types/products";
+import MediaTypeIcon from "@/ducks/products/components/MediaTypeIcon";
 
-const fields: SortableTableField<Product>[] = [
+const fields: SortableTableField<ProductWithMedia>[] = [
     // {field: 'id', title: 'ID', sortable: true},
     {field: 'handle', title: 'Handle', sortable: true},
     {field: 'title', title: 'Title', sortable: true},
     {field: 'variants', title: 'Variants', render: (row) => row.variants.length, align: 'end'},
+    {field: 'mediaCount', title: 'Media', render: (row) => row.mediaCount, align: 'end'},
+    {field: 'mediaTypes', title: 'Media Types', render: (row) => row.mediaTypes.map(t => <MediaTypeIcon type={t} key={t} />), align: 'center'},
 ]
 export default function ProductsTable() {
     const dispatch = useAppDispatch();
@@ -31,11 +38,11 @@ export default function ProductsTable() {
     const rowsPerPage = useAppSelector(selectRowsPerPage);
     const navigate = useNavigate();
 
-    const sortChangeHandler = (sort: SortProps<Product>) => {
+    const sortChangeHandler = (sort: SortProps<ProductWithMedia>) => {
         dispatch(setProductSort(sort));
     }
 
-    const selectProductHandler = (product: Product) => {
+    const selectProductHandler = (product: ProductWithMedia) => {
         dispatch(setCurrentProductId(product.id));
         if (!collection) {
             return;
@@ -52,7 +59,7 @@ export default function ProductsTable() {
     const rowsPerPageChangeHandler = (rowsPerPage: number) => {
         dispatch(setRowsPerPage(rowsPerPage));
     }
-    const rowClassName = (row: Product) => {
+    const rowClassName = (row: ProductWithMedia) => {
         return classNames({
             'table-danger': row.status === 'ARCHIVED',
             'table-info': row.status === 'DRAFT',

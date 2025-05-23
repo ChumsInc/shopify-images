@@ -17,15 +17,6 @@ export interface QueryMediaButtonProps {
 export default function QueryMediaButton({product, showMessages}: QueryMediaButtonProps) {
     const dispatch = useAppDispatch();
     const status = useAppSelector(selectImagesStatus);
-    const {messages} = useShopifySocket();
-
-    useEffect(() => {
-        const [msg] = messages.filter(msg => msg?.data?.action?.startsWith('queryProductMedia'));
-        switch (msg?.data?.result) {
-            case 'done':
-                dispatch(loadMedia());
-        }
-    }, [messages]);
 
     const onClick = useCallback(async () => {
         if (product) {

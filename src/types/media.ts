@@ -1,6 +1,6 @@
 import {Media} from "chums-types/src/shopify";
 
-export interface ProductMedia extends Omit<Media, 'mediaContentType'> {
+export interface ProductMedia extends Media {
     product_id: string;
 }
 

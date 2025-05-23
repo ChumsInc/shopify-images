@@ -1,19 +1,20 @@
 import {fetchJSON} from "@chumsinc/ui-utils";
-import {Product} from "chums-types/src/shopify";
+import {ProductWithMedia} from "@/src/types/products";
 
 export interface FetchProductOptions {
-    status?: 'ACTIVE'|'DRAFT'|'ARCHIVED';
+    status?: 'ACTIVE' | 'DRAFT' | 'ARCHIVED';
 }
-export async function fetchProducts(arg?:FetchProductOptions) {
+
+export async function fetchProducts(arg?: FetchProductOptions): Promise<ProductWithMedia[]> {
     try {
         const params = new URLSearchParams();
         if (arg?.status) {
             params.set('status', arg.status);
         }
         const url = `/api/shopify/admin/products.json?${params.toString()}`;
-        const res = await fetchJSON<Product[]>(url, {cache: 'no-cache'});
+        const res = await fetchJSON<ProductWithMedia[]>(url, {cache: 'no-cache'});
         return res ?? [];
-    } catch(err:unknown) {
+    } catch (err: unknown) {
         if (err instanceof Error) {
             console.debug("fetchProducts()", err.message);
             return Promise.reject(err);

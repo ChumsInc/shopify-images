@@ -5,7 +5,7 @@ import {parseImageUrl, parseImageURLParams} from "@/ducks/media/utils";
 import Decimal from "decimal.js";
 import {ProductMedia} from "@/src/types/media";
 
-function mediaHeight(width:string|number, media:ProductMedia|Media):number {
+function mediaHeight(width: string | number, media: ProductMedia | Media): number {
     return new Decimal(width).dividedBy(media.preview.image.width ?? 0)
         .times(media.preview.image.height ?? 0)
         .toDecimalPlaces(0).toNumber()
@@ -13,9 +13,10 @@ function mediaHeight(width:string|number, media:ProductMedia|Media):number {
 
 export interface ProductFigureProps extends Omit<FigureProps, 'media'> {
     media: ProductMedia;
-    width: string|number;
+    width: string | number;
 }
-export default function ProductFigure({media, width}:ProductFigureProps) {
+
+export default function ProductFigure({media, width}: ProductFigureProps) {
     const [url, setUrl] = useState<string | null>(parseImageUrl(media.preview.image.url));
     const [params, setParams] = useState<URLSearchParams>(parseImageURLParams(media?.preview.image.url, {width: `${width}`}));
     const [height, setHeight] = useState<number>(mediaHeight(width, media));
@@ -34,10 +35,8 @@ export default function ProductFigure({media, width}:ProductFigureProps) {
 
     return (
         <Figure title={media.preview.image.id}>
-            <Figure.Image width={width} height={height} alt={media.alt} src={src} />
-            <Figure.Caption style={{fontSize: 'x-small', wordBreak: 'break-all'}}>
-                <a href={media.preview.image.url} target="_blank" rel="noreferrer">{media.preview.image.url}</a>
-            </Figure.Caption>
+            <Figure.Image width={width} height={height} alt={media.alt} src={src}
+                          onClick={() => window.open(media.preview.image.url, '_blank')}/>
         </Figure>
     )
 

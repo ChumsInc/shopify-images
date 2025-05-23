@@ -21,13 +21,13 @@ export default function ProductInfo() {
         );
     }
     return (
-        <div className="sticky-top">
+        <div>
             <Card>
                 <Card.Header>{product.title}</Card.Header>
                 <Card.Body>
                     <div>Preview: <ProductLink product={product}>{product.handle}</ProductLink></div>
                     <div>Admin: <ProductLink product={product} admin>{product.id}</ProductLink></div>
-                    <div>Collections: <small className="text-secondary">{product.collections.join(', ')}</small></div>
+                    <div>Collections: <small className="text-secondary-emphasis">{product.collections.join(', ')}</small></div>
                     <div>Status: {product.status}</div>
                 </Card.Body>
                 <Card.Body>
@@ -39,7 +39,7 @@ export default function ProductInfo() {
                 </Card.Body>
             </Card>
             {!product.hasOnlyDefaultVariant && (
-                <div className="mt-1">
+                <div className="mt-1 sticky-top">
                     <Row className="g-3">
                         <Col xs="auto">
                             <h2>Variants</h2>

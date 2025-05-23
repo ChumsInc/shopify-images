@@ -1,10 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {FetchProductOptions, fetchProducts} from "@/ducks/products/api";
-import {Product} from "chums-types/src/shopify";
 import {RootState} from "@/app/configureStore";
 import {selectProductsStatus} from "@/ducks/products/index";
+import {ProductWithMedia} from "@/src/types/products";
 
-export const loadProducts = createAsyncThunk<Product[], FetchProductOptions | undefined, { state: RootState }>(
+export const loadProducts = createAsyncThunk<ProductWithMedia[], FetchProductOptions | undefined, { state: RootState }>(
     'products/load',
     async (arg?: FetchProductOptions) => {
         return await fetchProducts(arg)

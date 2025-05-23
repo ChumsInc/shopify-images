@@ -1,8 +1,12 @@
 import {SortProps} from "chums-types";
-import {Product, ProductVariant, SelectedOption} from "chums-types/src/shopify";
+import {ProductVariant, SelectedOption} from "chums-types/src/shopify";
 import {ProductMedia} from "@/src/types/media";
+import {ProductWithMedia} from "@/src/types/products";
 
-export const productSorter = ({field, ascending}: SortProps<Product>) => (a: Product, b: Product) => {
+export const productSorter = ({
+                                  field,
+                                  ascending
+                              }: SortProps<ProductWithMedia>) => (a: ProductWithMedia, b: ProductWithMedia) => {
     const sortMod = ascending ? 1 : -1;
     switch (field) {
         case 'handle':
@@ -11,6 +15,12 @@ export const productSorter = ({field, ascending}: SortProps<Product>) => (a: Pro
                 a[field].localeCompare(b[field]) === 0
                     ? a.id.localeCompare(b.id)
                     : a[field].localeCompare(b[field])
+            ) * sortMod;
+        case 'mediaCount':
+            return (
+                (a.mediaCount ?? 0) === (b.mediaCount ?? 0)
+                ? a.id.localeCompare(b.id)
+                : ((a.mediaCount ?? 0) > (b.mediaCount ?? 0) ? 1 : -1)
             ) * sortMod;
         case 'id':
         default:
@@ -46,7 +56,7 @@ export function handleize(str: string): string {
 
 export const colorGroups = ['color', 'pattern', 'color-pattern']
 
-export function colorOptions(options:SelectedOption[]):string {
+export function colorOptions(options: SelectedOption[]): string {
     if (options.length === 1) {
         return options
             .map(opt => `#${handleize(opt.name)}_${handleize(opt.value)}`)
@@ -62,18 +72,18 @@ export const reImpulse7 = /^(sku:[A-Z0-9-]+)\s+(.*)(#[a-z-]+_[a-z0-9-]+)$/;
 export const reImpulse2 = /^(sku:|#)[a-z0-9]+/i;
 
 
-export function variantImages(media:ProductMedia[], variant: ProductVariant):ProductMedia[] {
+export function variantImages(media: ProductMedia[], variant: ProductVariant): ProductMedia[] {
     const idList = variant.media.map(m => m.id);
     return media
         .filter(
             m => idList.includes(m.id)
-            || m.alt.startsWith(`#${variant.sku} `)
-            || m.alt.startsWith(`sku:${variant.sku} `)
-            || m.preview.image.url.includes(variant.sku)
+                || m.alt.startsWith(`#${variant.sku} `)
+                || m.alt.startsWith(`sku:${variant.sku} `)
+                || m.preview.image.url.includes(variant.sku)
         );
 }
 
-export function formatAltText(altText: string, variant:ProductVariant, productTitle:string): string {
+export function formatAltText(altText: string, variant: ProductVariant, productTitle: string): string {
     const hasColorOption = variant.selectedOptions.length === 1
         || variant.selectedOptions.filter(opt => colorGroups.includes(handleize(opt.name))).length > 0;
     const skuInfo = `sku:${variant.sku} `;

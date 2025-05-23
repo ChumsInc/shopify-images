@@ -18,14 +18,14 @@ export interface ImagesState {
     status: 'idle' | 'loading' | 'rejected' | 'saving'|'removing';
     mediaStatus: Record<string, 'idle' | 'saving'>
     changes: Record<string, string>;
-    sort: SortProps<ProductMedia | Image>
+    sort: SortProps<ProductMedia> | SortProps<Image>
 }
 
 export const initialState: ImagesState = {
     status: 'idle',
     mediaStatus: {},
     changes: {},
-    sort: {field: 'id', ascending: true},
+    sort: {field: 'position', ascending: true},
 }
 
 const imagesSlice = createSlice({
@@ -170,5 +170,6 @@ export const selectProductMedia = createSelector(
             .sort(mediaSorter(sort))
     }
 )
+
 
 export default imagesSlice;

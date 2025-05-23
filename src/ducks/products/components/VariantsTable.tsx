@@ -56,7 +56,7 @@ export default function VariantsTable() {
                 <Col/>
                 <Col xs="auto">
                     <ToggleButton id={showOptionsId} type="checkbox" checked={show}
-                                  variant="outline-secondary" size="sm"
+                                  variant="secondary" size="sm"
                                   value="show-options" onChange={() => setShow(!show)}>
                         Show Options
                     </ToggleButton>

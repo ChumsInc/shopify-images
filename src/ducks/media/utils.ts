@@ -29,6 +29,8 @@ export const mediaSorter = ({field, ascending}: SortProps<ProductMedia> | SortPr
                         ? a.id.localeCompare(b.id)
                         : a[field].localeCompare(b[field])
                 ) * sortMod;
+                case 'position':
+                    return ((a.position ?? 0) - (b.position ?? 0)) * sortMod;
             case 'id':
             default:
                 return a.id.localeCompare(b.id) * sortMod;
