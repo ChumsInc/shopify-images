@@ -1,19 +1,17 @@
 import React, {useEffect, useRef} from 'react';
-import ProductImageEditButton from "@/ducks/media/components/ProductImageEditButton";
 import ProductFigure from "@/ducks/media/components/ProductFigure";
 import ProductImageEdit from "@/ducks/media/components/ProductImageEdit";
 import {ProductMedia} from "@/src/types/media";
-import {Badge, Card, Stack} from "react-bootstrap";
+import {Card, Stack} from "react-bootstrap";
 import PushMediaButton from "@/ducks/media/components/PushMediaButton";
 import {useAppSelector} from "@/app/configureStore";
 import {selectSortedVariants} from "@/ducks/products";
 import PrimaryMediaBadge from "@/ducks/media/components/PrimaryMediaBadge";
 import SuccessfulMediaBadge from "@/ducks/media/components/SuccessfulMediaBadge";
-import DangerMediaBadge from "@/ducks/media/components/DangerMediaBadge";
+import DangerMediaButton from "@/ducks/media/components/DangerMediaButton";
 import InfoMediaBadge from "@/ducks/media/components/InfoMediaBadge";
 import {hasPrimaryImage, isImpulse2, isMissingAltText, isValidAll, isValidImpulse7} from "@/ducks/media/utils";
 import UnlinkMediaButton from "@/components/UnlinkMediaButton";
-import MediaTypeIcon from "@/ducks/products/components/MediaTypeIcon";
 import MediaTypeBadge from "@/ducks/products/components/MediaTypeBadge";
 
 
@@ -49,7 +47,7 @@ export default function ProductImageCard({media}: ProductImageContainerProps) {
                             <SuccessfulMediaBadge/>
                         )}
                         {isImpulse2(media.alt) && (
-                            <DangerMediaBadge>ALL</DangerMediaBadge>
+                            <DangerMediaButton>ALL</DangerMediaButton>
                         )}
                         {isValidAll(media.alt) && (
                             <InfoMediaBadge>ALL</InfoMediaBadge>
@@ -63,7 +61,8 @@ export default function ProductImageCard({media}: ProductImageContainerProps) {
                 <ProductFigure media={media} width={240}/>
             </Card.Body>
             <Card.Body className="border-top">
-                {isMissingAltText(media.alt) && <DangerMediaBadge>Missing Alt Text</DangerMediaBadge>}
+                {isMissingAltText(media.alt) &&
+                    <DangerMediaButton onClick={() => setEdit(true)}>Missing Alt Text</DangerMediaButton>}
                 <div className="text-secondary font-monospace mb-1"
                      onClick={altTextClickHandler}
                      style={{fontSize: 'small', cursor: 'pointer'}}>
