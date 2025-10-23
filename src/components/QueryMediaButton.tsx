@@ -1,12 +1,11 @@
-import React, {useCallback, useEffect} from 'react';
+import {useCallback} from 'react';
 import {Button} from "react-bootstrap";
-import {useShopifySocket} from "@/src/socket/SocketContext";
 import {ErrorBoundary} from "react-error-boundary";
 import ErrorBoundaryFallbackAlert from "@/components/ErrorBoundaryFallbackAlert";
 import SocketMessages from "@/src/socket/SocketMessages";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {loadMedia, loadProductMedia} from "@/ducks/media/actions";
-import {Product} from "chums-types/src/shopify";
+import type {Product} from "chums-types/shopify";
 import {selectImagesStatus} from "@/ducks/media";
 
 export interface QueryMediaButtonProps {

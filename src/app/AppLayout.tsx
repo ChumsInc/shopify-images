@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import ErrorBoundaryFallbackAlert from "@/components/ErrorBoundaryFallbackAlert";
 import AlertList from "@/ducks/alerts/AlertList";
 import {Col, Row} from "react-bootstrap";

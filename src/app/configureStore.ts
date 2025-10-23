@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import {combineReducers} from "redux";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {type TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import alertsReducer from "@/ducks/alerts";
 import {default as collectionsSlice} from "../ducks/collections";
 import {default as productsSlice} from "@/ducks/products";

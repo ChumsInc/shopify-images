@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {selectProductMedia} from "@/ducks/media";
 import {Col, Row} from "react-bootstrap";

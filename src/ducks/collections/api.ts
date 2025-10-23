@@ -1,4 +1,4 @@
-import {Collection} from "chums-types/src/shopify";
+import type {Collection} from "chums-types/shopify";
 import {fetchJSON} from "@chumsinc/ui-utils";
 
 export async function fetchCollections():Promise<Collection[]> {

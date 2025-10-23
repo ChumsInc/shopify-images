@@ -1,12 +1,10 @@
-import React, {useEffect, useId, useState} from 'react';
-import {Col, FormControl, InputGroup, ProgressBar, Row, Spinner, Stack, ToggleButton} from "react-bootstrap";
+import {useEffect, useId, useState} from 'react';
+import {Col, FormControl, InputGroup, ProgressBar, Row, Stack, ToggleButton} from "react-bootstrap";
 import {useAppSelector} from "@/app/configureStore";
 import {selectImagesStatus, selectProductMedia} from "@/ducks/media";
 import {selectCurrentProduct} from "@/ducks/products";
 import {hasPrimaryImage, isImpulse2, isMissingAltText, isValidAll, isValidImpulse7} from "@/ducks/media/utils";
-import MediaTypeIcon from "@/ducks/products/components/MediaTypeIcon";
 import MediaTypeBadge from "@/ducks/products/components/MediaTypeBadge";
-import classNames from "classnames";
 
 export default function ProductImageStatus() {
     const product = useAppSelector(selectCurrentProduct);
@@ -41,13 +39,15 @@ export default function ProductImageStatus() {
             <Row className="g-3">
                 <Col xs="auto">
                     <Stack direction="horizontal" className="mb-1 align-content-center" gap={3}>
-                        <MediaTypeBadge type="EXTERNAL_VIDEO" /><div>{video}</div>
+                        <MediaTypeBadge type="EXTERNAL_VIDEO"/>
+                        <div>{video}</div>
                     </Stack>
 
                 </Col>
                 <Col xs="auto">
                     <Stack direction="horizontal" className="mb-1 align-content-center" gap={3}>
-                        <MediaTypeBadge type="IMAGE" /><div>{image}</div>
+                        <MediaTypeBadge type="IMAGE"/>
+                        <div>{image}</div>
                     </Stack>
                 </Col>
                 <Col>
@@ -107,7 +107,7 @@ export default function ProductImageStatus() {
                 </Col>
             </Row>
             {status !== 'idle' && (
-                <ProgressBar animated now={100}  />
+                <ProgressBar animated now={100}/>
             )}
         </div>
     )

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {selectPendingChanges} from "@/ducks/media";
 import {mutateProductMedia} from "@/ducks/media/api";
@@ -8,8 +8,8 @@ import {Button} from "react-bootstrap";
 export default function MediaChangesButton() {
     const dispatch = useAppDispatch();
     const changes = useAppSelector(selectPendingChanges);
-    const [busy, setBusy] = React.useState(false);
-    const [disabled, setDisabled] = React.useState(changes.length === 0);
+    const [busy, setBusy] = useState(false);
+    const [disabled, setDisabled] = useState(changes.length === 0);
 
     const clickHandler = useCallback(async () => {
         setBusy(true);

@@ -1,4 +1,4 @@
-import {FilesUserError, MediaChange, ProductMedia} from "@/src/types/media";
+import type {FilesUserError, MediaChange, ProductMedia} from "@/types/media";
 import {fetchJSON} from "@chumsinc/ui-utils";
 
 export async function getProductMedia(arg?:string): Promise<ProductMedia[]> {

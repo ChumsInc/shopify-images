@@ -1,5 +1,5 @@
-import {SortProps} from "chums-types";
-import {Collection} from "chums-types/src/shopify";
+import type {SortProps} from "chums-types";
+import type {Collection} from "chums-types/shopify";
 
 export const collectionsSorter = ({
                                       field,

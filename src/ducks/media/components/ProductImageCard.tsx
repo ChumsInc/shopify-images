@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import ProductFigure from "@/ducks/media/components/ProductFigure";
 import ProductImageEdit from "@/ducks/media/components/ProductImageEdit";
-import {ProductMedia} from "@/src/types/media";
+import type {ProductMedia} from "@/types/media";
 import {Card, Stack} from "react-bootstrap";
 import PushMediaButton from "@/ducks/media/components/PushMediaButton";
 import {useAppSelector} from "@/app/configureStore";

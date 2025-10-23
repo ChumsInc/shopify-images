@@ -1,11 +1,11 @@
-import {ProductVariant} from 'chums-types/src/shopify'
-import {createEntityAdapter, createSelector, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import type {ProductVariant} from 'chums-types/shopify'
+import {createEntityAdapter, createSelector, createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import {loadProducts} from "@/ducks/products/actions";
 import {productSorter, productVariantSorter} from "@/ducks/products/utils";
 import {dismissAlert} from "@/ducks/alerts";
-import {SortProps} from "chums-types";
+import type {SortProps} from "chums-types";
 import {selectCurrentCollection, setCurrentCollectionId} from "@/ducks/collections";
-import {ProductWithMedia} from "@/src/types/products";
+import type {ProductWithMedia} from "@/types/products";
 
 const productAdapter = createEntityAdapter<ProductWithMedia, string>({
     selectId: (product) => product.id,

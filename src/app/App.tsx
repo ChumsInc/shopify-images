@@ -1,4 +1,3 @@
-import React from 'react';
 import {HashRouter, Navigate, Outlet, Route, Routes} from "react-router";
 import AppLayout from "@/app/AppLayout";
 import {ErrorBoundary} from "react-error-boundary";

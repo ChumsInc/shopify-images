@@ -1,4 +1,4 @@
-import {Media} from "chums-types/src/shopify";
+import type {Media} from "chums-types/shopify";
 
 export interface ProductMedia extends Media {
     product_id: string;

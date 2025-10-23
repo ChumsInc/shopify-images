@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {ProductVariant} from "chums-types/src/shopify";
+import {useEffect, useState} from 'react';
+import type {ProductVariant} from "chums-types/shopify";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {selectProductMedia, setMediaChange} from "@/ducks/media";
-import {ProductMedia} from "@/src/types/media";
+import type {ProductMedia} from "@/types/media";
 import {Button} from "react-bootstrap";
 import {formatAltText, variantImages} from "@/ducks/products/utils";
 import {selectCurrentProduct} from "@/ducks/products";

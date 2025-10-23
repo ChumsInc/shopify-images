@@ -1,8 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {FetchProductOptions, fetchProducts} from "@/ducks/products/api";
-import {RootState} from "@/app/configureStore";
+import {type FetchProductOptions, fetchProducts} from "@/ducks/products/api";
+import {type RootState} from "@/app/configureStore";
 import {selectProductsStatus} from "@/ducks/products/index";
-import {ProductWithMedia} from "@/src/types/products";
+import {type ProductWithMedia} from "@/types/products";
 
 export const loadProducts = createAsyncThunk<ProductWithMedia[], FetchProductOptions | undefined, { state: RootState }>(
     'products/load',
@@ -10,7 +10,7 @@ export const loadProducts = createAsyncThunk<ProductWithMedia[], FetchProductOpt
         return await fetchProducts(arg)
     },
     {
-        condition: (arg, {getState}) => {
+        condition: (_, {getState}) => {
             const state = getState();
             return selectProductsStatus(state) === 'idle';
         }

@@ -1,7 +1,7 @@
-import {SortProps} from "chums-types";
-import {ProductVariant, SelectedOption} from "chums-types/src/shopify";
-import {ProductMedia} from "@/src/types/media";
-import {ProductWithMedia} from "@/src/types/products";
+import type {SortProps} from "chums-types";
+import type {ProductVariant, SelectedOption} from "chums-types/shopify";
+import type {ProductMedia} from "@/types/media";
+import type {ProductWithMedia} from "@/types/products";
 
 export const productSorter = ({
                                   field,

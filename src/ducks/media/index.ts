@@ -1,9 +1,9 @@
-import {createEntityAdapter, createSelector, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {MediaChange, ProductMedia} from "@/src/types/media";
+import {createEntityAdapter, createSelector, createSlice, type PayloadAction} from "@reduxjs/toolkit";
+import type {MediaChange, ProductMedia} from "@/types/media";
 import {loadMedia, loadProductMedia, receiveMedia, saveMediaChange, unlinkProductMedia} from "@/ducks/media/actions";
 import {dismissAlert} from "@/ducks/alerts";
-import {SortProps} from "chums-types";
-import {Image} from "chums-types/src/shopify";
+import type {SortProps} from "chums-types";
+import type {Image} from "chums-types/shopify";
 import {selectCurrentProductId} from "@/ducks/products";
 import {mediaSorter} from "@/ducks/media/utils";
 

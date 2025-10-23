@@ -1,5 +1,4 @@
-import React from 'react';
-import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
+import {SortableTable, type SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {
     selectCurrentProduct,
@@ -12,12 +11,12 @@ import {
     setProductSort,
     setRowsPerPage
 } from "@/ducks/products";
-import {SortProps} from "chums-types";
+import type {SortProps} from "chums-types";
 import IncludeInactiveCheckbox from "@/ducks/products/components/IncludeInactiveCheckbox";
 import classNames from "classnames";
 import {generatePath, useNavigate} from "react-router";
 import {selectCurrentCollection} from "@/ducks/collections";
-import {ProductWithMedia} from "@/src/types/products";
+import type {ProductWithMedia} from "@/types/products";
 import MediaTypeIcon from "@/ducks/products/components/MediaTypeIcon";
 
 const fields: SortableTableField<ProductWithMedia>[] = [

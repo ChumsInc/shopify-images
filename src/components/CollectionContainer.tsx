@@ -1,4 +1,3 @@
-import React from 'react';
 import {Col, Row} from "react-bootstrap";
 import CollectionsList from "@/components/collections/CollectionsList";
 import ProductsTable from "@/ducks/products/components/ProductsTable";

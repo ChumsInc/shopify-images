@@ -1,4 +1,3 @@
-import React from 'react';
 import {Badge, Card, ListGroup, Stack} from "react-bootstrap";
 
 export default function BestPractices() {

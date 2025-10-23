@@ -1,9 +1,9 @@
 import React, {useEffect, useId, useState} from 'react';
-import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
+import {SortableTable, type SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {selectSortedVariants, selectVariantSort, setVariantSort} from "@/ducks/products";
-import {ProductVariant} from "chums-types/src/shopify";
-import {SortProps} from "chums-types";
+import type {ProductVariant} from "chums-types/shopify";
+import type {SortProps} from "chums-types";
 import VariantUpdateMediaButton from "@/ducks/products/components/VariantUpdateMediaButton";
 import {Col, Row, ToggleButton} from "react-bootstrap";
 
@@ -42,7 +42,8 @@ export default function VariantsTable() {
         dispatch(setVariantSort(sort));
     }
 
-    const selectVariantHandler = (variant: ProductVariant) => {
+    const selectVariantHandler = (_: ProductVariant) => {
+        //@TODO: can this be removed
         // dispatch(setCurrentProduct(product.id));
     }
 

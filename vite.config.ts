@@ -4,20 +4,38 @@ import path from "node:path";
 import process from "node:process";
 
 export default defineConfig({
+    plugins: [react()],
     resolve: {
         alias: {
+            '@/': path.resolve(process.cwd(), 'src'),
             "@/api": path.resolve(process.cwd(), 'src/api'),
-            "@/app": path.resolve(process.cwd(), 'src/app'),
-            "@/components": path.resolve(process.cwd(), 'src/components'),
+            '@/app': path.resolve(process.cwd(), 'src/app'),
+            '@/components': path.resolve(process.cwd(), 'src/components'),
             "@/ducks": path.resolve(process.cwd(), 'src/ducks'),
             "@/hooks": path.resolve(process.cwd(), 'src/hooks'),
-            "@/slices": path.resolve(process.cwd(), 'src/slices'),
+            '@/slices': path.resolve(process.cwd(), 'src/slices'),
             "@/src": path.resolve(process.cwd(), 'src'),
             "@/types": path.resolve(process.cwd(), 'src/types'),
             "@/utils": path.resolve(process.cwd(), 'src/utils'),
         }
     },
-    plugins: [react()],
+    base: "/apps/shopify-images/",
+    build: {
+        manifest: true,
+        sourcemap: true,
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return 'vendor'
+                    }
+                    if (id.includes('src/components')) {
+                        return 'components';
+                    }
+                }
+            }
+        }
+    },
     server: {
         port: 8080,
         host: 'localhost',

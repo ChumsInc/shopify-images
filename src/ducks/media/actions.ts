@@ -1,9 +1,9 @@
 import {createAction, createAsyncThunk} from "@reduxjs/toolkit";
-import {MediaChange, ProductMedia} from "@/src/types/media";
-import {getProductMedia, postUnlinkProductMedia, putProductMedia, UnlinkProductMediaArg} from "@/ducks/media/api";
-import {RootState} from "@/app/configureStore";
+import type {MediaChange, ProductMedia} from "@/types/media";
+import {getProductMedia, postUnlinkProductMedia, putProductMedia, type UnlinkProductMediaArg} from "@/ducks/media/api";
+import {type RootState} from "@/app/configureStore";
 import {selectHasPendingSaves, selectImagesStatus, selectMediaStatusById} from "@/ducks/media/index";
-import {Product} from "chums-types/src/shopify";
+import type {Product} from "chums-types/shopify";
 
 export const saveMediaChange = createAsyncThunk<ProductMedia | null, MediaChange, { state: RootState }>(
     'media/saveMediaChange',
@@ -24,7 +24,7 @@ export const loadProductMedia = createAsyncThunk<ProductMedia[], Product, { stat
         return getProductMedia(arg.handle);
     },
     {
-        condition: (arg, {getState}) => {
+        condition: (_, {getState}) => {
             const state = getState();
             return selectImagesStatus(state) === 'idle' && !selectHasPendingSaves(state);
         }
@@ -36,7 +36,7 @@ export const loadMedia = createAsyncThunk<ProductMedia[], void, { state: RootSta
         return getProductMedia();
     },
     {
-        condition: (arg, {getState}) => {
+        condition: (_, {getState}) => {
             const state = getState();
             return selectImagesStatus(state) === 'idle' && !selectHasPendingSaves(state);
         }
@@ -51,7 +51,7 @@ export const unlinkProductMedia = createAsyncThunk<ProductMedia[], UnlinkProduct
         return await postUnlinkProductMedia(arg);
     },
     {
-        condition: (arg, {getState}) => {
+        condition: (_, {getState}) => {
             const state = getState();
             return selectImagesStatus(state) === 'idle' && !selectHasPendingSaves(state);
         }

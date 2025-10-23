@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useId} from 'react';
+import {type ChangeEvent, useId} from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {selectIncludeInactive, setIncludeInactive} from "@/ducks/products";
 import {FormCheck} from "react-bootstrap";

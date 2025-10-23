@@ -1,10 +1,9 @@
-import React from 'react';
 import {Nav} from "react-bootstrap";
 import {generatePath, Link, useLocation} from 'react-router'
 import {useAppSelector} from "@/app/configureStore";
 import {selectCurrentCollection} from "@/ducks/collections";
 import {selectCurrentProduct} from "@/ducks/products";
-import {Collection, Product} from "chums-types/src/shopify";
+import type {Collection, Product} from "chums-types/shopify";
 
 export default function AppNav() {
     const location = useLocation();

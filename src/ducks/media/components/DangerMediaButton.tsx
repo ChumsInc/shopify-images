@@ -1,5 +1,4 @@
-import React from 'react';
-import {Button, ButtonProps} from "react-bootstrap";
+import {Button, type ButtonProps} from "react-bootstrap";
 
 export default function DangerMediaButton({children, ...props}: ButtonProps) {
     return (

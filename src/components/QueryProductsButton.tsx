@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Button} from "react-bootstrap";
 import {useShopifySocket} from "@/src/socket/SocketContext";
 import {ErrorBoundary} from "react-error-boundary";

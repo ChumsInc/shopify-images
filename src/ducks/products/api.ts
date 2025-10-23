@@ -1,5 +1,5 @@
 import {fetchJSON} from "@chumsinc/ui-utils";
-import {ProductWithMedia} from "@/src/types/products";
+import type {ProductWithMedia} from "@/types/products";
 
 export interface FetchProductOptions {
     status?: 'ACTIVE' | 'DRAFT' | 'ARCHIVED';

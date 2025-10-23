@@ -1,9 +1,9 @@
-import React, {useId} from 'react';
-import {ToggleButton, ToggleButtonProps} from "react-bootstrap";
+import {type ChangeEvent, useId} from 'react';
+import {ToggleButton, type ToggleButtonProps} from "react-bootstrap";
 
 export interface ProductImageEditButtonProps extends Omit<ToggleButtonProps, 'id'|'value'> {
     checked?: boolean;
-    onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (ev: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function ProductImageEditButton({checked, onChange, ...rest}: ProductImageEditButtonProps) {

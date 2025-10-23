@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {Figure, FigureProps} from "react-bootstrap";
-import {Media} from "chums-types/src/shopify";
+import {useEffect, useState} from 'react';
+import {Figure, type FigureProps} from "react-bootstrap";
+import type {Media} from "chums-types/shopify";
 import {parseImageUrl, parseImageURLParams} from "@/ducks/media/utils";
 import Decimal from "decimal.js";
-import {ProductMedia} from "@/src/types/media";
+import type {ProductMedia} from "@/types/media";
 
 function mediaHeight(width: string | number, media: ProductMedia | Media): number {
     return new Decimal(width).dividedBy(media.preview.image.width ?? 0)

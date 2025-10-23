@@ -1,17 +1,27 @@
-import React, {ChangeEvent, FormEvent, KeyboardEvent, useCallback, useEffect, useId, useState} from 'react';
+import {
+    type ChangeEvent,
+    type FormEvent,
+    type KeyboardEvent,
+    type RefObject,
+    useCallback,
+    useEffect,
+    useId,
+    useState
+} from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {saveMediaChange} from "@/ducks/media/actions";
 import {Button, Collapse, FormControl, InputGroup} from "react-bootstrap";
 import {selectMediaStatusById} from "@/ducks/media";
-import {ProductMedia} from "@/src/types/media";
+import type {ProductMedia} from "@/types/media";
 
 export interface ProductImageEditProps {
     media: ProductMedia;
     show?: boolean;
     onClose: () => void;
+    ref: RefObject<HTMLTextAreaElement>
 }
 
-export default React.forwardRef<HTMLTextAreaElement, ProductImageEditProps>(function ProductImageEdit({media, show, onClose}, ref) {
+export default function ProductImageEdit({media, show, onClose, ref}: ProductImageEditProps) {
     const dispatch = useAppDispatch();
     const [alt, setAlt] = useState<string>(media.alt ?? media.preview.image.altText ?? '');
     const status = useAppSelector(state => selectMediaStatusById(state, media.id));
@@ -65,4 +75,4 @@ export default React.forwardRef<HTMLTextAreaElement, ProductImageEditProps>(func
             </form>
         </Collapse>
     )
-})
+}

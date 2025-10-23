@@ -1,5 +1,5 @@
 import React from 'react';
-import {Product} from "chums-types/src/shopify";
+import type {Product} from "chums-types/shopify";
 
 export interface ProductLinkProps {
     product: Product;

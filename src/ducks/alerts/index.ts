@@ -1,6 +1,6 @@
 import {createAction, createReducer, isFulfilled, isRejected} from "@reduxjs/toolkit";
-import {RootState} from "@/app/configureStore";
-import {StyledErrorAlert} from "@/src/types/alert";
+import type {RootState} from "@/app/configureStore";
+import type {StyledErrorAlert} from "@/types/alert";
 
 export interface AlertsState {
     nextId: number;

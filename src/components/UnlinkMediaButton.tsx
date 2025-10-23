@@ -1,11 +1,11 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {selectImagesStatus} from "@/ducks/media";
-import {Button, ButtonProps, Modal, ProgressBar, Stack} from "react-bootstrap";
+import {Button, type ButtonProps, Modal, ProgressBar, Stack} from "react-bootstrap";
 import {selectCurrentProduct} from "@/ducks/products";
 import ProductFigure from "@/ducks/media/components/ProductFigure";
 import {unlinkProductMedia} from "@/ducks/media/actions";
-import {ProductMedia} from "@/src/types/media";
+import type {ProductMedia} from "@/types/media";
 
 export interface UnlinkMediaButtonProps extends Omit<ButtonProps, 'onClick'|'variant'> {
     media: ProductMedia;

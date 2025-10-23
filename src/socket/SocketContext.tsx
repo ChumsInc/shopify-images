@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useRef, useState} from 'react';
-import {Variant} from "react-bootstrap/types";
+import type {Variant} from "react-bootstrap/types";
 import {nanoid} from "@reduxjs/toolkit";
 import useWebSocket from "react-use-websocket";
 

@@ -1,9 +1,9 @@
-import {Collection} from 'chums-types/src/shopify'
-import {createEntityAdapter, createSelector, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import type {Collection} from 'chums-types/shopify'
+import {createEntityAdapter, createSelector, createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import {loadCollections} from "@/ducks/collections/actions";
 import {collectionsSorter} from "@/ducks/collections/utils";
 import {dismissAlert} from "@/ducks/alerts";
-import {SortProps} from "chums-types";
+import type {SortProps} from "chums-types";
 
 const collectionsAdapter = createEntityAdapter<Collection, string>({
     selectId: (collection) => collection.gid,
@@ -104,7 +104,7 @@ export const selectCurrentCollection = createSelector(
     }
 )
 
-    export const selectSortedCollectionsList = createSelector(
+export const selectSortedCollectionsList = createSelector(
     [selectAllCollections, selectCollectionSort],
     (list, sort) => {
         return [...list]

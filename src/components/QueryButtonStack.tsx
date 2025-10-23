@@ -1,4 +1,3 @@
-import React from 'react';
 import {Stack} from "react-bootstrap";
 import QueryProductsButton from "@/components/QueryProductsButton";
 import QueryCollectionsButton from "@/components/QueryCollectionsButton";

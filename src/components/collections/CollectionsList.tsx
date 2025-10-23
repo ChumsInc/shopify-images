@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
-import {Collection} from "chums-types/src/shopify";
+import {useEffect, useState} from 'react';
+import {SortableTable, type SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
+import type {Collection} from "chums-types/shopify";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {
     selectCollectionSort,
@@ -9,8 +9,7 @@ import {
     setCollectionSort,
     setCurrentCollectionId
 } from "@/ducks/collections";
-import {useNavigate} from "react-router";
-import {SortProps} from "chums-types";
+import type {SortProps} from "chums-types";
 import classNames from "classnames";
 import dayjs from "dayjs";
 
@@ -40,7 +39,6 @@ export default function CollectionsList() {
     const sort = useAppSelector(selectCollectionSort);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(25);
-    const navigate = useNavigate();
 
     useEffect(() => {
         setPage(0);
@@ -52,7 +50,6 @@ export default function CollectionsList() {
 
     const rowSelectHandler = (row: Collection) => {
         dispatch(setCurrentCollectionId(row.gid));
-        // navigate(`/collections/${row.handle}`);
     }
 
     return (

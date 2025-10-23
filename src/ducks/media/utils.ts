@@ -1,6 +1,6 @@
-import {SortProps} from "chums-types";
-import {ProductMedia} from "@/src/types/media";
-import {Image, ProductVariant} from "chums-types/src/shopify";
+import type {SortProps} from "chums-types";
+import type {ProductMedia} from "@/types/media";
+import type {Image, ProductVariant} from "chums-types/shopify";
 import {reImpulse2, reImpulse7} from "@/ducks/products/utils";
 
 export const mediaSorter = ({field, ascending}: SortProps<ProductMedia> | SortProps<Image>) =>

@@ -1,4 +1,3 @@
-import React from 'react';
 import VariantsTable from "@/ducks/products/components/VariantsTable";
 import {Card, Col, Row, Stack} from "react-bootstrap";
 import {useAppSelector} from "@/app/configureStore";

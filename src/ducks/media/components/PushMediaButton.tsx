@@ -1,5 +1,5 @@
-import React from 'react';
-import {ProductMedia} from "@/src/types/media";
+import {useState} from 'react';
+import type {ProductMedia} from "@/types/media";
 import {Button} from "react-bootstrap";
 import {mutateProductMedia} from "@/ducks/media/api";
 import {useAppDispatch} from "@/app/configureStore";
@@ -12,7 +12,7 @@ export interface PushMediaButtonProps {
 
 export default function PushMediaButton({media, disabled}: PushMediaButtonProps) {
     const dispatch = useAppDispatch();
-    const [busy, setBusy] = React.useState(disabled ?? false);
+    const [busy, setBusy] = useState(disabled ?? false);
 
     const isChanged = media.alt !== media.preview.image.altText;
     const variant = isChanged ? 'warning' : 'outline-secondary';
