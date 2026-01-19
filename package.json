@@ -2,7 +2,7 @@
   "name": "shopify-images",
   "version": "1.2.3",
   "dependencies": {
-    "@chumsinc/sortable-tables": "^2.0.8",
+    "@chumsinc/sortable-tables": "^3.1.0",
     "@chumsinc/ui-utils": "^2.0.4",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -25,8 +25,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "start": "webpack serve --config webpack.dev.mjs --progress",
-    "build": "webpack --config webpack.prod.mjs --progress",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "browserslist": {
@@ -43,7 +44,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
-    "@types/node": "^24.9.1",
+    "@types/node": "^25.0.9",
     "@types/numeral": "^2.0.3",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
@@ -53,7 +54,7 @@
     "bootstrap-icons": "^1.11.1",
     "eslint": "^9.8.0",
     "eslint-plugin-react": "^7.35.0",
-    "globals": "^16.0.0",
+    "globals": "^17.0.0",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.0.1"
   },

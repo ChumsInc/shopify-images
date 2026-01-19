@@ -18,7 +18,7 @@ export interface ProductImageEditProps {
     media: ProductMedia;
     show?: boolean;
     onClose: () => void;
-    ref: RefObject<HTMLTextAreaElement>
+    ref: RefObject<HTMLTextAreaElement|null>
 }
 
 export default function ProductImageEdit({media, show, onClose, ref}: ProductImageEditProps) {
