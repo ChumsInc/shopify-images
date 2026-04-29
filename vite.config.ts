@@ -21,9 +21,12 @@ export default defineConfig({
     build: {
         manifest: true,
         sourcemap: true,
+        outDir: 'dist',
+        emptyOutDir: true,
         rollupOptions: {
             external: [
-              /node_modules\/bootstrap/
+             "node_modules/bootstrap",
+                "node_modules/bootstrap-icons"
             ],
             output: {
                 manualChunks(id) {

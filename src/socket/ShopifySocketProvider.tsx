@@ -1,48 +1,12 @@
-import React, {createContext, useContext, useEffect, useRef, useState} from 'react';
-import type {Variant} from "react-bootstrap/types";
+import React, {useEffect, useRef, useState} from "react";
+import type {Variant} from "react-bootstrap/esm/types";
+import useWebSocketModule from "react-use-websocket";
 import {nanoid} from "@reduxjs/toolkit";
-import useWebSocket from "react-use-websocket";
+import type {ShopifyMessage} from "@/socket/types";
+import ShopifySocketContext from "@/socket/ShopifySocketContext.tsx";
+import {buildSocketUrl} from "@/socket/utils.ts";
 
-export interface WebSocketActionResponse {
-    action: string;
-    result: string;
-    timestamp?: string;
-}
-
-export interface WebSocketMessage<T = unknown> {
-    app: string;
-    data: T;
-    id: string;
-}
-
-export type ShopifyMessage = WebSocketMessage<WebSocketActionResponse>
-
-export interface SocketContext {
-    messages: ShopifyMessage[];
-    connected: boolean;
-    color: Variant;
-    shouldReconnect: boolean;
-    setShouldReconnect: (value: boolean) => void;
-}
-
-export const defaultSocketContext: SocketContext = {
-    messages: [],
-    connected: false,
-    color: "secondary",
-    shouldReconnect: true,
-    setShouldReconnect: () => {},
-}
-
-const ShopifySocketContext = createContext<SocketContext>(defaultSocketContext);
-
-
-const buildSocketUrl = ():string|null => {
-    if (window.location.host === 'localhost' || window.location.host.startsWith('localhost:')) {
-        return null;
-        // return 'ws://localhost:8086';
-    }
-    return 'wss://intranet.chums.com/api/shopify/';
-}
+const useWebSocket = (useWebSocketModule as unknown as { default: typeof useWebSocketModule }).default;
 
 export function ShopifySocketProvider({children}: { children: React.ReactNode }) {
     const [messages, setMessages] = useState<ShopifyMessage[]>([]);
@@ -53,13 +17,7 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
     const socket = useRef<WebSocket | null>(null);
     const heartbeatHandle = useRef(0);
     const url = buildSocketUrl();
-    if (!url) {
-        return (
-            <div>
-                {children}
-            </div>
-        );
-    }
+
     const {lastJsonMessage} = useWebSocket(url, {
         onOpen,
         onClose,
@@ -70,14 +28,18 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
 
 
     useEffect(() => {
-        setShouldReconnect(true);
+        if (url) {
+            Promise.resolve().then(() => {
+                setShouldReconnect(true);
+            })
+        }
 
         return () => {
             setShouldReconnect(false);
             window.clearTimeout(heartbeatHandle.current);
             socket.current?.close();
         }
-    }, [])
+    }, [socket, url])
 
     useEffect(() => {
         console.log(lastJsonMessage);
@@ -85,9 +47,18 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
 
     useEffect(() => {
         if (shouldReconnect && attempts > 2) {
-            setShouldReconnect(false);
+            Promise.resolve().then(() => {
+                setShouldReconnect(false);
+            })
         }
     }, [shouldReconnect, attempts]);
+
+    return (
+        <ShopifySocketContext value={{connected, messages, color, shouldReconnect, setShouldReconnect}}>
+            {children}
+        </ShopifySocketContext>
+    )
+
 
     function onOpen() {
         setConnected(true);
@@ -127,17 +98,4 @@ export function ShopifySocketProvider({children}: { children: React.ReactNode })
         console.error('ShopifySocketProvider.onError()', ev);
     }
 
-    return (
-        <ShopifySocketContext.Provider value={{connected, messages, color, shouldReconnect, setShouldReconnect}}>
-            {children}
-        </ShopifySocketContext.Provider>
-    )
-}
-
-export function useShopifySocket() {
-    const context = useContext(ShopifySocketContext);
-    if (context === undefined) {
-        throw new Error('useSocket must be used within a ShopifySocketProvider');
-    }
-    return context;
 }

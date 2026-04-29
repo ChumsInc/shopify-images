@@ -8,11 +8,9 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@reduxjs/toolkit": "^2.0.1",
-    "chums-types": "github:ChumsInc/chums-types",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",
     "decimal.js": "^10.4.3",
-    "eslint-plugin-react-refresh": "^0.5.2",
     "numeral": "^2.0.6",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.5",
@@ -21,8 +19,7 @@
     "react-redux": "^9.0.4",
     "react-router": "^7.1.1",
     "react-use-websocket": "^4.11.1",
-    "redux": "^5.0.1",
-    "vite": "^8.0.10"
+    "redux": "^5.0.1"
   },
   "scripts": {
     "dev": "vite",
@@ -53,11 +50,14 @@
     "auto-changelog": "^2.4.0",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
+    "chums-types": "github:ChumsInc/chums-types",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.0.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.0.1"
+    "typescript-eslint": "^8.0.1",
+    "vite": "^8.0.10"
   },
   "auto-changelog": {
     "template": "changelog-template.hbs",

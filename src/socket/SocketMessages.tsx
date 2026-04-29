@@ -1,6 +1,7 @@
-import {type ShopifyMessage, useShopifySocket} from "@/socket/SocketContext";
+import type {ShopifyMessage} from "@/socket/types";
 import SocketMessage, {type SocketMessageProps} from "@/socket/SocketMessage";
 import {Stack, type StackProps} from "react-bootstrap";
+import {useShopifySocket} from "@/socket/hooks.ts";
 
 export interface SocketMessagesProps extends StackProps {
     filter?: (msg: ShopifyMessage) => boolean;

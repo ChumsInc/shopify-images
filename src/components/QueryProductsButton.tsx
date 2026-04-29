@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 import {Button} from "react-bootstrap";
-import {useShopifySocket} from "@/socket/SocketContext";
+import {useShopifySocket} from "@/socket/hooks.ts";
 import {ErrorBoundary} from "react-error-boundary";
 import ErrorBoundaryFallbackAlert from "@/components/ErrorBoundaryFallbackAlert";
 import SocketMessages from "@/socket/SocketMessages";
@@ -18,15 +18,17 @@ export default function QueryProductsButton({handle, showMessages}: QueryProduct
 
     useEffect(() => {
         const [msg] = messages.filter(msg => msg?.data?.action?.startsWith('queryProducts('));
-        switch (msg?.data?.result) {
-            case 'starting':
-                setBusy(true);
-                return;
-            case 'done':
-                setBusy(false);
-                dispatch(loadProducts())
-        }
-    }, [busy, messages]);
+        Promise.resolve().then(() => {
+            switch (msg?.data?.result) {
+                case 'starting':
+                    setBusy(true);
+                    return;
+                case 'done':
+                    setBusy(false);
+                    dispatch(loadProducts())
+            }
+        })
+    }, [busy, messages, dispatch]);
 
     const onClick = useCallback(async () => {
         const params = new URLSearchParams();
