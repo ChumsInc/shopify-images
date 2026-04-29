@@ -1,21 +1,19 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2022",
+    "target": "ES2023",
     "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "baseUrl": "./src",
     "paths": {
-      "@/src/*": ["./*"],
-      "@/api/*": ["./api/*"],
-      "@/app/*": ["./app/*"],
-      "@/components/*": ["./components/*"],
-      "@/ducks/*": ["./ducks/*"],
+      "@/app/*": ["./src/app/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/ducks/*": ["./src/ducks/*"],
       "@/hooks/*": ["./hooks/*"],
-      "@/slices/*": ["./slices/*"],
-      "@/types/*": ["./types/*"],
+      "@/slices/*": ["./src/slices/*"],
+      "@/socket/*": ["./src/socket/*"],
+      "@/types/*": ["./src/types/*"],
       "@/utils/*": ["./utils/*"]
     },
 
