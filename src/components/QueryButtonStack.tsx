@@ -1,9 +1,9 @@
 import {Stack} from "react-bootstrap";
 import QueryProductsButton from "@/components/QueryProductsButton";
 import QueryCollectionsButton from "@/components/QueryCollectionsButton";
-import SocketMessages from "@/src/socket/SocketMessages";
+import SocketMessages from "@/socket/SocketMessages";
 import QueryMediaButton from "@/components/QueryMediaButton";
-import SocketStatus from "@/src/socket/SocketStatus";
+import SocketStatus from "@/socket/SocketStatus";
 
 export default function QueryButtonStack() {
     return (

@@ -1,4 +1,4 @@
-import SocketIcon from "@/src/socket/SocketIcon";
+import SocketIcon from "@/socket/SocketIcon";
 
 export default function SocketStatus() {
     return (

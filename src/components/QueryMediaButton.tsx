@@ -2,7 +2,7 @@ import {useCallback} from 'react';
 import {Button} from "react-bootstrap";
 import {ErrorBoundary} from "react-error-boundary";
 import ErrorBoundaryFallbackAlert from "@/components/ErrorBoundaryFallbackAlert";
-import SocketMessages from "@/src/socket/SocketMessages";
+import SocketMessages from "@/socket/SocketMessages";
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {loadMedia, loadProductMedia} from "@/ducks/media/actions";
 import type {Product} from "chums-types/shopify";

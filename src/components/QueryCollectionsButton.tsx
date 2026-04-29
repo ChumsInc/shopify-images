@@ -1,9 +1,9 @@
 import {useCallback, useEffect, useState} from 'react';
 import {Button} from "react-bootstrap";
-import {useShopifySocket} from "@/src/socket/SocketContext";
+import {useShopifySocket} from "@/socket/SocketContext";
 import {ErrorBoundary} from "react-error-boundary";
 import ErrorBoundaryFallbackAlert from "@/components/ErrorBoundaryFallbackAlert";
-import SocketMessages from "@/src/socket/SocketMessages";
+import SocketMessages from "@/socket/SocketMessages";
 import {useAppDispatch} from "@/app/configureStore";
 import {loadCollections} from "@/ducks/collections/actions";
 
